@@ -8,9 +8,9 @@
     "react-scripts": "1.0.13"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "NODE_PATH=src react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "lint": "eslint src",
     "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
