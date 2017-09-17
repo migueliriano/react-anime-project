@@ -12,10 +12,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "lint": "eslint src",
+    "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
   },
 
-  "precommit" : [ "lint" ],
+  "precommit" : [ "precommit-lint" ],
 
   "devDependencies": {
     "eslint-config-airbnb": "^15.1.0",
