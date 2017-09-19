@@ -3,9 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "grommet": "^1.7.0",
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-scripts": "1.0.13"
+    "react-scripts": "1.0.13",
+    "styled-components": "^2.1.2"
   },
   "scripts": {
     "start": "NODE_PATH=src react-scripts start",
@@ -15,9 +18,9 @@
     "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
   },
-
-  "precommit" : [ "precommit-lint" ],
-
+  "precommit": [
+    "precommit-lint"
+  ],
   "devDependencies": {
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
