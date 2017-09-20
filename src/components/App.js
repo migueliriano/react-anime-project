@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 import AnimeGrid from 'containers/AnimeGrid';
 
@@ -16,12 +17,15 @@ const Header = styled.header`
   padding-top: 30px;
 `;
 
-const App = () =>
-  (<Wrapper>
-    <Header>
-      <Logo />
-    </Header>
-    <AnimeGrid />
-  </Wrapper>);
+const App = () => (
+  <MuiThemeProvider>
+    <Wrapper>
+      <Header>
+        <Logo />
+      </Header>
+      <AnimeGrid />
+    </Wrapper>
+  </MuiThemeProvider>
+);
 
 export default App;

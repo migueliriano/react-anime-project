@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "grommet": "^1.7.0",
+    "material-ui": "^0.19.2",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
@@ -22,6 +22,7 @@
     "precommit-lint"
   ],
   "devDependencies": {
+    "babel-eslint": "^8.0.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
