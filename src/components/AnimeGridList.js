@@ -59,29 +59,35 @@ const AverageRank = Type.extend`
   margin-left: 15px;
 `;
 
-const AnimeGridList = props => (
-  <GridContainer>
-    {props.animes.map((anime) => {
-      const { canonicalTitle, posterImage, showType, averageRating } = anime.attributes;
-      return (
-        <LinkBoxAnime
-          href={`/anime/${anime.id}`}
-          key={anime.id}
-          style={{ backgroundImage: `url(${posterImage.large})` }}
-        >
+class AnimeGridList extends React.Component {
+  shouldComponentUpdate = nextProps => (
+    nextProps.animes.length !== this.props.animes.length
+  )
 
-          <BoxDetail>
-            <Title>{canonicalTitle}</Title>
-            <Detail>
-              <Type>{showType}</Type>
-              <AverageRank>{averageRating || '0'}%</AverageRank>
-            </Detail>
-          </BoxDetail>
-        </LinkBoxAnime>
-      );
-    })}
-  </GridContainer>
-);
+  render = () => (
+    <GridContainer>
+      {this.props.animes.map((anime) => {
+        const { canonicalTitle, posterImage, showType, averageRating } = anime.attributes;
+        return (
+          <LinkBoxAnime
+            href={`/anime/${anime.id}`}
+            key={anime.id}
+            style={{ backgroundImage: `url(${posterImage.large})` }}
+          >
+
+            <BoxDetail>
+              <Title>{canonicalTitle}</Title>
+              <Detail>
+                <Type>{showType}</Type>
+                <AverageRank>{averageRating || '0'}%</AverageRank>
+              </Detail>
+            </BoxDetail>
+          </LinkBoxAnime>
+        );
+      })}
+    </GridContainer>
+  )
+}
 
 AnimeGridList.propTypes = {
   animes: PropTypes.arrayOf(PropTypes.object).isRequired,

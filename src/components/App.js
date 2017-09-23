@@ -19,7 +19,7 @@ const Header = styled.header`
   padding-top: 30px;
 `;
 
-const AnimeGridRender = props => <AnimeGrid {...props} />;
+const AnimeGridRender = props => <AnimeGrid {...props} infiniteScroll />;
 
 const App = () => (
   <MuiThemeProvider>
