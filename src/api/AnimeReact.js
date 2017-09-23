@@ -1,15 +1,15 @@
-const PREFIX_URL = 'https://kitsu.io/api/edge/';
+const BASE_URL = 'https://kitsu.io/api/edge/';
 
 const AnimeReact = {
 
   fetchAnimeList: () => (
-    fetch(`${PREFIX_URL}anime`)
+    fetch(`${BASE_URL}anime`)
       .then(response => response.json())
       .catch(error => this.errorLog(error))
   ),
 
   errorLog: (error) => {
-    console.error(error);
+    console.log(error);
     return null;
   },
 

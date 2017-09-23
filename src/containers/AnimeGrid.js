@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
+import PropTypes from 'prop-types';
 
 import AnimeReact from 'api/AnimeReact';
 import AnimeGridList from 'components/AnimeGridList';
@@ -15,56 +16,82 @@ const CircularProgressStyle = styled(CircularProgress)`
 `;
 
 class AnimeGrid extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      animes: [],
-      nextPageUrl: '',
-      loading: true,
-    };
+  static defaultProps = {
+    infiniteScroll: false,
+    loadBeforeScrollEnd: 5,
   }
 
-  componentDidMount() {
+  state = {
+    animes: [],
+    nextPageUrl: '',
+    isLoading: true,
+  }
+
+  componentDidMount = () => {
     AnimeReact.fetchAnimeList()
       .then(animes => this.setAnimeDataStates(animes));
+    if (this.props.infiniteScroll) {
+      window.addEventListener('scroll', this.handleScroll);
+    }
   }
 
-  setAnimeDataStates = (animes) => {
-    this.setState({ loading: true });
+  componentWillUnmount = () => {
+    if (this.props.infiniteScroll) {
+      window.removeEventListener('scroll', this.handleScroll);
+    }
+  };
 
+  setAnimeDataStates = (animes) => {
     if (animes) {
       this.setState(prevState => (
         {
           animes: [...prevState.animes, ...animes.data],
           nextPageUrl: animes.links.next,
-          loading: false,
+          isLoading: false,
         }
       ));
+    }
+  }
+
+  handleScroll = () => {
+    const currentWindowHeight =
+      (window.innerHeight + window.scrollY) + this.props.loadBeforeScrollEnd;
+
+    if (currentWindowHeight >= document.body.offsetHeight) {
+      window.removeEventListener('scroll', this.handleScroll);
+      this.handleLoadMore()
+        .then(() => window.addEventListener('scroll', this.handleScroll));
     }
   }
 
   handleLoadMore = () => {
     const { nextPageUrl } = this.state;
 
-    AnimeReact.fetchAnimeNextPage(nextPageUrl)
+    this.setState({ isLoading: true });
+
+    return AnimeReact.fetchAnimeNextPage(nextPageUrl)
       .then(animes => this.setAnimeDataStates(animes));
   }
 
   render() {
-    const { animes, loading } = this.state;
-    console.log(animes);
+    const { animes, isLoading } = this.state;
+    const { infiniteScroll } = this.props;
     return (
       <div>
-        <div className="filter-nav">Filter Nav</div>
+        {/* <div className="filter-nav">Filter Nav</div> */}
         <AnimeGridList animes={animes} />
         <LoadMoreContainer>
-          {loading && <CircularProgressStyle />}
-          {!loading && <RaisedButton onClick={this.handleLoadMore} label="Load More Animes" primary />}
+          {isLoading && <CircularProgressStyle />}
+          {!isLoading && !infiniteScroll && <RaisedButton onClick={this.handleLoadMore} label="Load More Animes" primary />}
         </LoadMoreContainer>
       </div>
     );
   }
 }
+
+AnimeGrid.propTypes = {
+  infiniteScroll: PropTypes.bool,
+  loadBeforeScrollEnd: PropTypes.number,
+};
 
 export default AnimeGrid;
