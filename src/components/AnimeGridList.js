@@ -59,13 +59,14 @@ const AverageRank = Type.extend`
   margin-left: 15px;
 `;
 
-class AnimeGridList extends React.Component {
-  shouldComponentUpdate = nextProps => (
-    nextProps.animes.length !== this.props.animes.length
-  )
+class AnimeGridList extends React.PureComponent {
+  // shouldComponentUpdate = nextProps => (
+  //   nextProps.animes.length !== this.props.animes.length
+  // )
 
-  render = () => (
-    <GridContainer>
+  render = () => {
+    console.log(this.props.animes);
+    return (<GridContainer>
       {this.props.animes.map(({ id, attributes }) => {
         const { canonicalTitle, posterImage, showType, averageRating } = attributes;
         return (
@@ -85,8 +86,8 @@ class AnimeGridList extends React.Component {
           </LinkBoxAnime>
         );
       })}
-    </GridContainer>
-  )
+    </GridContainer>);
+  }
 }
 
 AnimeGridList.propTypes = {
