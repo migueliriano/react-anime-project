@@ -66,12 +66,12 @@ class AnimeGridList extends React.Component {
 
   render = () => (
     <GridContainer>
-      {this.props.animes.map((anime) => {
-        const { canonicalTitle, posterImage, showType, averageRating } = anime.attributes;
+      {this.props.animes.map(({ id, attributes }) => {
+        const { canonicalTitle, posterImage, showType, averageRating } = attributes;
         return (
           <LinkBoxAnime
-            href={`/anime/${anime.id}`}
-            key={anime.id}
+            href={`/anime/${id}`}
+            key={id}
             style={{ backgroundImage: `url(${posterImage.large})` }}
           >
 
