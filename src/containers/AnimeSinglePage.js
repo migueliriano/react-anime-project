@@ -7,6 +7,8 @@ import _ from 'underscore';
 import AnimeReact from 'api/AnimeReact';
 import HeroImage from 'components/HeroImage';
 import AnimeMainInfo from 'components/AnimeMainInfo';
+import AnimeCard from 'components/AnimeCard';
+import YoutubeVideo from 'components/YoutubeVideo';
 
 import ImageNotFound from 'img/poster-not-found.jpg';
 
@@ -18,6 +20,12 @@ const CircularProgressStyle = styled(CircularProgress)`
 
 const ColumnAnimeinfo = styled.div`
   margin-left: 15px;
+  display: inline-block;
+`;
+
+const ColumnBodyPage = ColumnAnimeinfo.extend`
+  margin-left: 50px;
+  vertical-align: top;
 `;
 
 class AnimeSinglePage extends React.Component {
@@ -33,6 +41,7 @@ class AnimeSinglePage extends React.Component {
 
   render = () => {
     if (!_.isEmpty(this.state.anime)) {
+      console.log(this.state.anime);
       const {
         coverImage,
         canonicalTitle,
@@ -44,6 +53,8 @@ class AnimeSinglePage extends React.Component {
         endDate,
         averageRating,
         episodeLength,
+        synopsis,
+        youtubeVideoId,
       } = this.state.anime.attributes;
 
       const animeDetails = {
@@ -71,6 +82,17 @@ class AnimeSinglePage extends React.Component {
               animeDetails={animeDetails}
             />
           </ColumnAnimeinfo>
+
+          <ColumnBodyPage>
+            <AnimeCard title="Description">
+              {synopsis}
+            </AnimeCard>
+
+            <AnimeCard title="Video">
+              <YoutubeVideo videoId={youtubeVideoId} />
+            </AnimeCard>
+          </ColumnBodyPage>
+
         </SinglePageContainer>
       );
     }

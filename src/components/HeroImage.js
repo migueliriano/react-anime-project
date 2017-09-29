@@ -23,11 +23,25 @@ const AnimeTitle = styled.div`
   font-weight: bold;
 `;
 
-const HeroImage = props => (
-  <FullWidthImage backgroundImage={props.src} style={{ backgroundImage: `url(${props.src}` }}>
-    <AnimeTitle> {props.title}</AnimeTitle>
-  </FullWidthImage>
-);
+class HeroImage extends React.Component {
+  componentDidMount = () => {
+    window.addEventListener('scroll', this.handleParallaxScroll);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener('scroll', this.handleParallaxScroll);
+  };
+
+  handleParallaxScroll = () => {
+    document.querySelector('#hero-img').style.backgroundPositionY = `${window.scrollY}px`;
+  };
+
+  render = () => (
+    <FullWidthImage id="hero-img" backgroundImage={this.props.src} style={{ backgroundImage: `url(${this.props.src}` }}>
+      <AnimeTitle> {this.props.title}</AnimeTitle>
+    </FullWidthImage>
+  )
+}
 
 HeroImage.propTypes = {
   src: PropTypes.string.isRequired,

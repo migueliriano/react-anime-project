@@ -22,7 +22,7 @@ const HomePageContainer = styled.div``;
 class AnimeGrid extends React.Component {
   static defaultProps = {
     infiniteScroll: false,
-    loadBeforeScrollEnd: 5,
+    loadBeforeScrollEnd: 20,
   }
 
   state = {

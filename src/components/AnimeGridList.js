@@ -1,17 +1,18 @@
 import React from 'react';
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import imgNotFound from 'img/poster-not-found.jpg';
 
-const GridContainer = styled.section`
+const GridContainer = Styled.section`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
   padding: 30px;
+  overflow: scroll;
 `;
 
-const LinkBoxAnime = styled.a`
+const LinkBoxAnime = Styled.a`
   display: inline-block;
   position: relative;
   margin-right: 30px;
@@ -25,7 +26,7 @@ const LinkBoxAnime = styled.a`
   border-radius: 5px;
 `;
 
-const BoxDetail = styled.div`
+const BoxDetail = Styled.div`
   background: #000;
   height: 5vw;
   width: 100%;
@@ -41,17 +42,17 @@ const BoxDetail = styled.div`
   padding-top: 15px;
 `;
 
-const Title = styled.div`
+const Title = Styled.div`
   font-size: 18px;
   font-weight: bold;
 `;
 
-const Detail = styled.div`
+const Detail = Styled.div`
   position: absolute;
   bottom: 10px;
   left: 10px;
 `;
-const Type = styled.span`
+const Type = Styled.span`
   color: #53c4ff;
   font-weight: bold;
   text-transform: uppercase;
