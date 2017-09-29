@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 
 import AnimeReact from 'api/AnimeReact';
 import AnimeGridList from 'components/AnimeGridList';
+import Logo from 'components/Logo';
+import { Header } from 'style/base';
 
 const LoadMoreContainer = styled.div`
   text-align: center;
@@ -15,6 +17,8 @@ const CircularProgressStyle = styled(CircularProgress)`
   text-align: center;
 `;
 
+const HomePageContainer = styled.div``;
+
 class AnimeGrid extends React.Component {
   static defaultProps = {
     infiniteScroll: false,
@@ -23,7 +27,6 @@ class AnimeGrid extends React.Component {
 
   state = {
     animes: [],
-    nextPageUrl: '',
     isLoading: true,
   }
 
@@ -43,48 +46,56 @@ class AnimeGrid extends React.Component {
 
   setAnimeDataStates = (animes) => {
     if (animes) {
+      this.nextPageUrl = animes.links.next;
       this.setState(prevState => (
         {
           animes: [...prevState.animes, ...animes.data],
-          nextPageUrl: animes.links.next,
           isLoading: false,
         }
       ));
     }
   }
 
+  handleScrollRunning = false;
+  nextPageUrl = '';
+
   handleScroll = () => {
+    if (this.handleScrollRunning) {
+      return;
+    }
+
     const currentWindowHeight =
       (window.innerHeight + window.scrollY) + this.props.loadBeforeScrollEnd;
 
     if (currentWindowHeight >= document.body.offsetHeight) {
-      window.removeEventListener('scroll', this.handleScroll);
+      this.handleScrollRunning = true;
       this.handleLoadMore()
-        .then(() => window.addEventListener('scroll', this.handleScroll));
+        .then(() => { this.handleScrollRunning = false; });
     }
   }
 
   handleLoadMore = () => {
-    const { nextPageUrl } = this.state;
-
     this.setState({ isLoading: true });
 
-    return AnimeReact.fetchAnimeNextPage(nextPageUrl)
+    return AnimeReact.fetchAnimeNextPage(this.nextPageUrl)
       .then(animes => this.setAnimeDataStates(animes));
   }
 
-  render() {
+  render = () => {
     const { animes, isLoading } = this.state;
     const { infiniteScroll } = this.props;
     return (
-      <div>
+      <HomePageContainer>
+        <Header>
+          <Logo />
+        </Header>
         {/* <div className="filter-nav">Filter Nav</div> */}
         <AnimeGridList animes={animes} />
         <LoadMoreContainer>
           {isLoading && <CircularProgressStyle />}
           {!isLoading && !infiniteScroll && <RaisedButton onClick={this.handleLoadMore} label="Load More Animes" primary />}
         </LoadMoreContainer>
-      </div>
+      </HomePageContainer>
     );
   }
 }

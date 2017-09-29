@@ -5,17 +5,19 @@
   "dependencies": {
     "material-ui": "^0.19.2",
     "prop-types": "^15.5.10",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
-    "styled-components": "^2.1.2"
+    "styled-components": "^2.1.2",
+    "underscore": "^1.8.3"
   },
   "scripts": {
     "start": "NODE_PATH=src react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "lint": "eslint src",
+    "lint-fix": "eslint --fix src",
     "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
   },

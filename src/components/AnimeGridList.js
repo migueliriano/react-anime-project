@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
+import imgNotFound from 'img/poster-not-found.jpg';
+
 const GridContainer = styled.section`
   display: flex;
   flex-wrap: wrap;
@@ -60,20 +62,17 @@ const AverageRank = Type.extend`
 `;
 
 class AnimeGridList extends React.PureComponent {
-  // shouldComponentUpdate = nextProps => (
-  //   nextProps.animes.length !== this.props.animes.length
-  // )
-
-  render = () => {
-    console.log(this.props.animes);
-    return (<GridContainer>
+  render = () => (
+    <GridContainer>
       {this.props.animes.map(({ id, attributes }) => {
         const { canonicalTitle, posterImage, showType, averageRating } = attributes;
+        const largePosterImg = posterImage ? posterImage.large : imgNotFound;
         return (
           <LinkBoxAnime
             href={`/anime/${id}`}
+            target="_blank"
             key={id}
-            style={{ backgroundImage: `url(${posterImage.large})` }}
+            style={{ backgroundImage: `url(${largePosterImg})` }}
           >
 
             <BoxDetail>
@@ -86,8 +85,8 @@ class AnimeGridList extends React.PureComponent {
           </LinkBoxAnime>
         );
       })}
-    </GridContainer>);
-  }
+    </GridContainer>
+  )
 }
 
 AnimeGridList.propTypes = {
