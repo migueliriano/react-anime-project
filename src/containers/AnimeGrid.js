@@ -22,7 +22,12 @@ const HomePageContainer = styled.div``;
 class AnimeGrid extends React.Component {
   static defaultProps = {
     infiniteScroll: false,
-    loadBeforeScrollEnd: 20,
+    loadBeforeScrollEnd: 250,
+  }
+
+  static propTypes = {
+    infiniteScroll: PropTypes.bool,
+    loadBeforeScrollEnd: PropTypes.number,
   }
 
   state = {
@@ -32,7 +37,8 @@ class AnimeGrid extends React.Component {
 
   componentDidMount = () => {
     AnimeReact.fetchAnimeList()
-      .then(animes => this.setAnimeDataStates(animes));
+      .then(this.setAnimeDataStates);
+
     if (this.props.infiniteScroll) {
       window.addEventListener('scroll', this.handleScroll);
     }
@@ -78,7 +84,7 @@ class AnimeGrid extends React.Component {
     this.setState({ isLoading: true });
 
     return AnimeReact.fetchAnimeNextPage(this.nextPageUrl)
-      .then(animes => this.setAnimeDataStates(animes));
+      .then(this.setAnimeDataStates);
   }
 
   render = () => {
@@ -99,10 +105,5 @@ class AnimeGrid extends React.Component {
     );
   }
 }
-
-AnimeGrid.propTypes = {
-  infiniteScroll: PropTypes.bool,
-  loadBeforeScrollEnd: PropTypes.number,
-};
 
 export default AnimeGrid;

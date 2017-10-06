@@ -9,7 +9,7 @@ const FullWidthImage = styled.section`
   background-position: center;
   display:flex;
   margin-bottom: 30px;
-  background-image:  ${props => props.backgroundImage}
+  background-image:  url(${props => props.backgroundImage});
 `;
 
 const AnimeTitle = styled.div`
@@ -37,7 +37,7 @@ class HeroImage extends React.Component {
   };
 
   render = () => (
-    <FullWidthImage id="hero-img" backgroundImage={this.props.src} style={{ backgroundImage: `url(${this.props.src}` }}>
+    <FullWidthImage id="hero-img" backgroundImage={this.props.src}>
       <AnimeTitle> {this.props.title}</AnimeTitle>
     </FullWidthImage>
   )

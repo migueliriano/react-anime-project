@@ -9,7 +9,6 @@ const GridContainer = Styled.section`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 30px;
-  overflow: scroll;
 `;
 
 const LinkBoxAnime = Styled.a`
@@ -24,6 +23,7 @@ const LinkBoxAnime = Styled.a`
   background-size: cover;
   color: #fff;
   border-radius: 5px;
+  background-image: url(${props => props.backgroundImage});
 `;
 
 const BoxDetail = Styled.div`
@@ -33,10 +33,8 @@ const BoxDetail = Styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
-  background: -webkit-linear-gradient(bottom,rgba(0,0,0,1), rgba(0,0,0,.4));
-  background: -o-linear-gradient(bottom,rgba(0,0,0,1), rgba(0,0,0,.4));
-  background: -moz-linear-gradient(bottom,rgba(0,0,0,1), rgba(0,0,0,.4));
   background: linear-gradient(bottom,rgba(0,0,0,1), rgba(0,0,0,.4));
+  background: -webkit-linear-gradient(bottom,rgba(0,0,0,1),rgba(0,0,0,.4));
   border-bottom-right-radius:5px;
   border-bottom-left-radius:5px;
   padding-top: 15px;
@@ -62,33 +60,50 @@ const AverageRank = Type.extend`
   margin-left: 15px;
 `;
 
+const AnimeBoxLink = (props) => {
+  const { canonicalTitle, posterImage, showType, averageRating } = props.anime.attributes;
+  const { id } = props.anime;
+  const largePosterImg = posterImage ? posterImage.large : imgNotFound;
+
+  return (
+    <LinkBoxAnime
+      href={`/anime/${id}`}
+      target="_blank"
+      key={id}
+      backgroundImage={largePosterImg}
+    >
+
+      <BoxDetail>
+        <Title>{canonicalTitle}</Title>
+        <Detail>
+          <Type>{showType}</Type>
+          <AverageRank>{averageRating || '0'}%</AverageRank>
+        </Detail>
+      </BoxDetail>
+    </LinkBoxAnime>
+  );
+};
+
 class AnimeGridList extends React.PureComponent {
+  static propTypes = {
+    animes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  };
+
+  renderAnimeBoxLink = animes => animes.map(anime => <AnimeBoxLink anime={anime} />)
+
   render = () => (
     <GridContainer>
-      {this.props.animes.map(({ id, attributes }) => {
-        const { canonicalTitle, posterImage, showType, averageRating } = attributes;
-        const largePosterImg = posterImage ? posterImage.large : imgNotFound;
-        return (
-          <LinkBoxAnime
-            href={`/anime/${id}`}
-            target="_blank"
-            key={id}
-            style={{ backgroundImage: `url(${largePosterImg})` }}
-          >
-
-            <BoxDetail>
-              <Title>{canonicalTitle}</Title>
-              <Detail>
-                <Type>{showType}</Type>
-                <AverageRank>{averageRating || '0'}%</AverageRank>
-              </Detail>
-            </BoxDetail>
-          </LinkBoxAnime>
-        );
-      })}
+      {this.renderAnimeBoxLink(this.props.animes)}
     </GridContainer>
   )
 }
+
+AnimeBoxLink.propTypes = {
+  anime: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ]).isRequired,
+};
 
 AnimeGridList.propTypes = {
   animes: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -41,7 +41,6 @@ class AnimeSinglePage extends React.Component {
 
   render = () => {
     if (!_.isEmpty(this.state.anime)) {
-      console.log(this.state.anime);
       const {
         coverImage,
         canonicalTitle,

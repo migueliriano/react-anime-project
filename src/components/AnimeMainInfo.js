@@ -27,29 +27,27 @@ const TitleDetail = Styled.div`
   width: 40%;
   display: inline-block;
   color: #0591da;
+  text-transform: capitalize;
+  font-weight: bold;
 `;
 
 const Detail = Styled.span``;
 
-class AnimeMainInfo extends React.Component {
-  jsUcfirst = word => word.charAt(0).toUpperCase() + word.slice(1);
-
-  render = () => (
-    <MainInfoContainer>
-      <PosterContainer>
-        <PosterImage src={this.props.posterImage} alt="Poster Image Anime" />
-      </PosterContainer>
-      <AnimeDetails>
-        {Object.keys(this.props.animeDetails).map(titleDetail => (
-          <Row key={`${titleDetail}`}>
-            <TitleDetail>{this.jsUcfirst(titleDetail)}: </TitleDetail>
-            <Detail>{this.props.animeDetails[titleDetail]}</Detail>
-          </Row>
-        ))}
-      </AnimeDetails>
-    </MainInfoContainer>
-  )
-}
+const AnimeMainInfo = props => (
+  <MainInfoContainer>
+    <PosterContainer>
+      <PosterImage src={props.posterImage} alt="Poster Image Anime" />
+    </PosterContainer>
+    <AnimeDetails>
+      {Object.keys(props.animeDetails).map(titleDetail => (
+        <Row key={`${titleDetail}`}>
+          <TitleDetail>{titleDetail}: </TitleDetail>
+          <Detail>{props.animeDetails[titleDetail]}</Detail>
+        </Row>
+      ))}
+    </AnimeDetails>
+  </MainInfoContainer>
+);
 
 AnimeMainInfo.propTypes = {
   posterImage: PropTypes.string.isRequired,
