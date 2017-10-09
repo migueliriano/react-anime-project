@@ -4,7 +4,10 @@ import App from 'components/App';
 import { BrowserRouter } from 'react-router-dom';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.hydrate((
+/**
+ * App JS render
+ */
+ReactDOM.render((
   <BrowserRouter>
     <App />
   </BrowserRouter>

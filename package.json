@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "eslint": "^4.8.0",
     "material-ui": "^0.19.2",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
@@ -19,6 +18,7 @@
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "lint": "eslint src",
     "lint-fix": "eslint --fix src",
+    "doc": "esdoc -c esdoc.json",
     "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
   },
@@ -27,10 +27,15 @@
   ],
   "devDependencies": {
     "babel-eslint": "^8.0.0",
+    "esdoc": "^1.0.3",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^4.8.0",
     "eslint-config-airbnb": "^15.1.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-react": "^7.3.0",
+    "jsdoc": "^3.5.5",
     "pre-commit": "^1.2.2"
   }
 }

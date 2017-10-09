@@ -19,6 +19,9 @@ const CircularProgressStyle = styled(CircularProgress)`
 
 const HomePageContainer = styled.div``;
 
+/**
+ * this is MyClass.
+ */
 class AnimeGrid extends React.Component {
   static defaultProps = {
     infiniteScroll: false,
