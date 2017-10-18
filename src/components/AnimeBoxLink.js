@@ -78,10 +78,10 @@ const AnimeBoxLink = (props) => {
 };
 
 AnimeBoxLink.propTypes = {
-  anime: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-  ]).isRequired,
+  anime: PropTypes.shape({
+    attributes: PropTypes.object.isRequired,
+    id: PropTypes.number.isRequired,
+  }).isRequired,
 };
 
 export default AnimeBoxLink;

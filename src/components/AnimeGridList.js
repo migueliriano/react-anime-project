@@ -16,7 +16,7 @@ class AnimeGridList extends React.PureComponent {
     animes: PropTypes.arrayOf(PropTypes.object).isRequired,
   };
 
-  renderAnimeBoxLink = animes => animes.map(anime => <AnimeBoxLink anime={anime} />)
+  renderAnimeBoxLink = animes => animes.map(anime => <AnimeBoxLink key={anime.id} anime={anime} />)
 
   render = () => (
     <GridContainer>
