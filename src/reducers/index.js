@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import * as animeList from './animeList';
-import * as singleAnime from './singleAnime';
+import animeList from './animeList';
+import singleAnime from './singleAnime';
 
 const rootReducer = combineReducers({
-  ...animeList,
-  ...singleAnime,
+  animeList,
+  singleAnime,
 });
 
 export default rootReducer;
