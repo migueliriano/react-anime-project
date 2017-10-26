@@ -1,5 +1,5 @@
 module.exports = {
-    "extends": "airbnb",
+    "extends": ["airbnb"],
     "env": {
         "browser": true,
         "jest": true
@@ -10,6 +10,6 @@ module.exports = {
         "import/no-unresolved": 0,
         "import/no-extraneous-dependencies": 0,
         "import/extensions": 0,
-        "strict": 0
+        "strict": 0,
     }
 };

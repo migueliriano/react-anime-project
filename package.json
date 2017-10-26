@@ -7,9 +7,11 @@
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.13",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "styled-components": "^2.1.2",
     "underscore": "^1.8.3"
   },
@@ -19,12 +21,12 @@
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "lint": "eslint src",
     "lint-fix": "eslint --fix src",
+    "lint-precommit": "scripts/precommit-lint",
     "doc": "esdoc -c esdoc.json",
-    "precommit-lint": "scripts/precommit-lint",
     "eject": "react-scripts eject"
   },
   "precommit": [
-    "precommit-lint"
+    "lint-precommit"
   ],
   "devDependencies": {
     "babel-eslint": "^8.0.0",

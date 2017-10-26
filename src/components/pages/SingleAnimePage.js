@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import CircularProgress from 'material-ui/CircularProgress';
 import _ from 'underscore';
 
-import AnimeReact from 'api/AnimeReact';
 import HeroImage from 'components/HeroImage';
 import AnimeMainInfo from 'components/AnimeMainInfo';
 import AnimeCard from 'components/AnimeCard';
@@ -28,19 +27,22 @@ const ColumnBodyPage = ColumnAnimeinfo.extend`
   vertical-align: top;
 `;
 
-class AnimeSinglePage extends React.Component {
-  state = {
-    anime: {},
-  }
+class SingleAnimePage extends React.Component {
+  static propTypes = {
+    match: PropTypes.objectOf(PropTypes.any).isRequired,
+    actions: PropTypes.objectOf(PropTypes.func).isRequired,
+    anime: PropTypes.objectOf(PropTypes.any).isRequired,
+  };
 
   componentWillMount() {
     const animeId = this.props.match.params.id;
-    AnimeReact.fetchAnimeById(animeId)
-      .then(anime => this.setState({ anime: anime.data }));
+    this.props.actions.fetchSingleAnime(animeId);
   }
 
   render = () => {
-    if (!_.isEmpty(this.state.anime)) {
+    console.log(this.props.anime);
+
+    if (!_.isEmpty(this.props.anime)) {
       const {
         coverImage,
         canonicalTitle,
@@ -54,7 +56,7 @@ class AnimeSinglePage extends React.Component {
         episodeLength,
         synopsis,
         youtubeVideoId,
-      } = this.state.anime.attributes;
+      } = this.props.anime.attributes;
 
       const animeDetails = {
         type: showType,
@@ -103,13 +105,4 @@ class AnimeSinglePage extends React.Component {
   }
 }
 
-AnimeSinglePage.propTypes = {
-  match: PropTypes.objectOf(PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.bool,
-    PropTypes.object,
-  ])).isRequired,
-};
-
-export default AnimeSinglePage;
+export default SingleAnimePage;

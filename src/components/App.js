@@ -1,21 +1,26 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Switch, Route } from 'react-router-dom';
 
-import AnimeGrid from 'containers/AnimeGrid';
-import AnimeSinglePage from 'containers/AnimeSinglePage';
+import Home from 'containers/Home';
+import SingleAnimePage from 'containers/SingleAnimePage';
+
+import configureStore from 'configureStore';
 
 import 'index.css';
 
-const AnimeGridRender = props => <AnimeGrid {...props} infiniteScroll />;
+const store = configureStore();
 
 const App = () => (
-  <MuiThemeProvider>
-    <Switch>
-      <Route exact path="/" render={AnimeGridRender} />
-      <Route path="/anime/:id" component={AnimeSinglePage} />
-    </Switch>
-  </MuiThemeProvider>
+  <Provider store={store}>
+    <MuiThemeProvider>
+      <Switch>Home
+        <Route exact path="/" component={Home} />
+        <Route path="/anime/:id" component={SingleAnimePage} />
+      </Switch>
+    </MuiThemeProvider>
+  </Provider>
 );
 
 export default App;

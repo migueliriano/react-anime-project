@@ -80,7 +80,7 @@ const AnimeBoxLink = (props) => {
 AnimeBoxLink.propTypes = {
   anime: PropTypes.shape({
     attributes: PropTypes.object.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
   }).isRequired,
 };
 
