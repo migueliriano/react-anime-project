@@ -5,6 +5,10 @@ import PropTypes from 'prop-types';
 const CardContainer = Styled.div`
   width: 60vw;
   margin-bottom: 30px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+  }
 `;
 
 const Header = Styled.div`

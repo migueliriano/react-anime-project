@@ -17,6 +17,17 @@ const LinkBoxAnime = Styled.a`
   color: #fff;
   border-radius: 5px;
   background-image: url(${props => props.backgroundImage});
+
+  @media (max-width: 768px) {
+    width: 33vw;
+    height: 40vw;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 90vw;
+    margin-right: 0px
+  }
 `;
 
 const BoxDetail = Styled.div`
@@ -31,18 +42,45 @@ const BoxDetail = Styled.div`
   border-bottom-right-radius:5px;
   border-bottom-left-radius:5px;
   padding-top: 15px;
+
+  @media (max-width: 768px) {
+    height: 10vw;
+  }
+
+  @media (max-width: 600px) {
+    height: 23vw;
+  }
 `;
 
 const Title = Styled.div`
-  font-size: 18px;
+  font-size: 1.1vw;
   font-weight: bold;
+
+  @media (max-width: 768px) {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 5vw;
+  }
+
 `;
 
 const Detail = Styled.div`
   position: absolute;
   bottom: 10px;
   left: 10px;
+  font-size: 1.1vw;
+
+  @media (max-width: 768px) {
+    font-size: 2vw;
+  }
+
+  @media (max-width: 600px) {
+    font-size: 4vw;
+  }
 `;
+
 const Type = Styled.span`
   color: #53c4ff;
   font-weight: bold;
@@ -61,7 +99,6 @@ const AnimeBoxLink = (props) => {
   return (
     <LinkBoxAnime
       href={`/anime/${id}`}
-      target="_blank"
       key={id}
       backgroundImage={largePosterImg}
     >

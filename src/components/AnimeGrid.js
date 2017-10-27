@@ -40,17 +40,16 @@ class AnimeGrid extends React.Component {
 
     if (this.props.infiniteScroll) {
       window.addEventListener('scroll', this.handleScroll);
+      window.addEventListener('resize', this.handleScroll);
     }
   }
 
   componentWillUnmount = () => {
     if (this.props.infiniteScroll) {
-      window.removeEventListener('scroll', this.handleScroll);
+      window.removeEventListener('scroll resize', this.handleScroll);
+      window.removeEventListener('resize', this.handleScroll);
     }
   };
-
-  handleScrollRunning = false;
-  nextPageUrl = '';
 
   handleScroll = () => {
     if (this.props.isFeching) {

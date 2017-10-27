@@ -8,6 +8,8 @@ import HeroImage from 'components/HeroImage';
 import AnimeMainInfo from 'components/AnimeMainInfo';
 import AnimeCard from 'components/AnimeCard';
 import YoutubeVideo from 'components/YoutubeVideo';
+import Logo from 'components/Logo';
+
 
 import ImageNotFound from 'img/poster-not-found.jpg';
 
@@ -17,9 +19,21 @@ const CircularProgressStyle = styled(CircularProgress)`
   margin: 0 auto;
 `;
 
+const LogoLinkContainer = styled.div`
+  text-align: center;
+  display: block;
+`;
+
 const ColumnAnimeinfo = styled.div`
   margin-left: 15px;
   display: inline-block;
+
+  @media (max-width: 768px) {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
 `;
 
 const ColumnBodyPage = ColumnAnimeinfo.extend`
@@ -40,8 +54,6 @@ class SingleAnimePage extends React.Component {
   }
 
   render = () => {
-    console.log(this.props.anime);
-
     if (!_.isEmpty(this.props.anime)) {
       const {
         coverImage,
@@ -78,6 +90,9 @@ class SingleAnimePage extends React.Component {
             title={canonicalTitle}
           />
           <ColumnAnimeinfo>
+            <LogoLinkContainer>
+              <Logo />
+            </LogoLinkContainer>
             <AnimeMainInfo
               posterImage={largePorterImg}
               animeDetails={animeDetails}
