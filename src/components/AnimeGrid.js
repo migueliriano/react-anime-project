@@ -1,23 +1,23 @@
 import React from 'react';
 
-import styled from 'styled-components';
+import Styled from 'styled-components';
 import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 
 import AnimeGridList from './AnimeGridList';
 
-const LoadMoreContainer = styled.div`
+const LoadMoreContainer = Styled.div`
   text-align: center;
 `;
 
-const CircularProgressStyle = styled(CircularProgress)`
+const CircularProgressStyle = Styled(CircularProgress)`
   text-align: center;
 `;
 
-const GridContainer = styled.div``;
+const GridContainer = Styled.div``;
 
-class AnimeGrid extends React.Component {
+class AnimeGrid extends React.PureComponent {
   static defaultProps = {
     infiniteScroll: true,
     loadBeforeScrollEnd: 500,
@@ -28,14 +28,14 @@ class AnimeGrid extends React.Component {
     loadBeforeScrollEnd: PropTypes.number,
     animes: PropTypes.arrayOf(PropTypes.object).isRequired,
     isFeching: PropTypes.bool.isRequired,
-    fetchAnimesList: PropTypes.func.isRequired,
+    fetchAnimesListIfIsNeeded: PropTypes.func.isRequired,
     fetchNextPageAnimeList: PropTypes.func.isRequired,
   }
 
   componentDidMount = () => {
-    const { isFeching, fetchAnimesList } = this.props;
+    const { isFeching, fetchAnimesListIfIsNeeded } = this.props;
     if (!isFeching) {
-      fetchAnimesList();
+      fetchAnimesListIfIsNeeded();
     }
 
     if (this.props.infiniteScroll) {
@@ -46,7 +46,7 @@ class AnimeGrid extends React.Component {
 
   componentWillUnmount = () => {
     if (this.props.infiniteScroll) {
-      window.removeEventListener('scroll resize', this.handleScroll);
+      window.removeEventListener('scroll', this.handleScroll);
       window.removeEventListener('resize', this.handleScroll);
     }
   };

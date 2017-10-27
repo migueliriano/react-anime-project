@@ -51,19 +51,24 @@ const fetchRequest = async (dispatch, url, requestAction) => {
   try {
     const response = await fetch(url);
     const animes = await response.json();
-    nextPageUrl = animes.links.next;
     dispatch(receiveAnime(animes.data));
+    return animes;
   } catch (error) {
     dispatch(requestFailed(error));
+    return error;
   }
 };
 
-export const fetchAnimesList = () => (dispatch) => {
-  fetchRequest(dispatch, ANIMELIST_URL, () => requestAnimes());
+export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
+  if (!getState().animeList.animes.length) {
+    const respose = await fetchRequest(dispatch, ANIMELIST_URL, () => requestAnimes());
+    nextPageUrl = respose.links.next;
+  }
 };
 
 export function fetchNextPageAnimeList() {
-  return (dispatch) => {
-    fetchRequest(dispatch, nextPageUrl, () => requestNextpage());
+  return async (dispatch) => {
+    const respose = await fetchRequest(dispatch, nextPageUrl, () => requestNextpage());
+    nextPageUrl = respose.links.next;
   };
 }

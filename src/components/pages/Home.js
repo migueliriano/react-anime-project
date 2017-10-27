@@ -10,7 +10,7 @@ const HomePageContainer = styled.div``;
 
 const Home = (props) => {
   const { animes, isFeching } = props;
-  const { fetchAnimesList, fetchNextPageAnimeList } = props.actions;
+  const { fetchAnimesListIfIsNeeded, fetchNextPageAnimeList } = props.actions;
   return (
     <HomePageContainer>
       <Header>
@@ -20,7 +20,7 @@ const Home = (props) => {
       <AnimeGrid
         animes={animes}
         fetchNextPageAnimeList={fetchNextPageAnimeList}
-        fetchAnimesList={fetchAnimesList}
+        fetchAnimesListIfIsNeeded={fetchAnimesListIfIsNeeded}
         isFeching={isFeching}
       />
     </HomePageContainer>

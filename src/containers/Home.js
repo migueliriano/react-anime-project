@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchAnimesList, fetchNextPageAnimeList } from 'actions/animeList';
+import { fetchAnimesListIfIsNeeded, fetchNextPageAnimeList } from 'actions/animeList';
 
 import Home from 'components/pages/Home';
 
@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => (
   {
     actions: {
-      fetchAnimesList: () => dispatch(fetchAnimesList()),
+      fetchAnimesListIfIsNeeded: () => dispatch(fetchAnimesListIfIsNeeded()),
       fetchNextPageAnimeList: () => dispatch(fetchNextPageAnimeList()),
     },
   }

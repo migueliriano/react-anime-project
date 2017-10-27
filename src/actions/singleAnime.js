@@ -33,7 +33,10 @@ export const receiveSingleAnime = anime => (
   }
 );
 
-export const fetchSingleAnime = animeId => async (dispatch) => {
+export const fetchSingleAnime = animeId => async (dispatch, getState) => {
+  if (getState().singleAnime.anime.id === animeId) {
+    return;
+  }
   dispatch(requestSingleAnime());
   try {
     const response = await fetch(`${BASE_API_URL}anime/${animeId}`);

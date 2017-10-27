@@ -49,6 +49,7 @@ class SingleAnimePage extends React.Component {
   };
 
   componentWillMount() {
+    window.scrollTo(0, 0);
     const animeId = this.props.match.params.id;
     this.props.actions.fetchSingleAnime(animeId);
   }

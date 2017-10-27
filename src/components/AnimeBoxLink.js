@@ -1,10 +1,11 @@
 import React from 'react';
 import Styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import imgNotFound from 'img/poster-not-found.jpg';
 
-const LinkBoxAnime = Styled.a`
+const LinkBoxAnime = Styled(Link)`
   display: inline-block;
   position: relative;
   margin-right: 30px;
@@ -98,9 +99,9 @@ const AnimeBoxLink = (props) => {
 
   return (
     <LinkBoxAnime
-      href={`/anime/${id}`}
+      to={`/anime/${id}`}
       key={id}
-      backgroundImage={largePosterImg}
+      style={{ backgroundImage: `url(${largePosterImg}` }}
     >
 
       <BoxDetail>
