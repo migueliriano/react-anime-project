@@ -25,8 +25,4 @@ class AnimeGridList extends React.PureComponent {
   )
 }
 
-AnimeGridList.propTypes = {
-  animes: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
-
 export default AnimeGridList;
