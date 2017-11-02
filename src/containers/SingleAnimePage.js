@@ -3,9 +3,12 @@ import { fetchSingleAnime } from 'actions/singleAnime';
 
 import SinglePage from 'components/pages/SingleAnimePage';
 
-const mapStateToProps = state => ({
-  ...state.singleAnime,
-});
+const mapStateToProps = state => (
+  {
+    animeData: { ...state.singleAnime },
+    charactersData: { ...state.animeCharacters },
+  }
+);
 
 const mapDispatchToProps = dispatch => ({
   actions: {

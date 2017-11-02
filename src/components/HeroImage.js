@@ -11,6 +11,9 @@ const FullWidthImage = styled.section`
   margin-bottom: 30px;
   background-image:  url(${props => props.backgroundImage});
   position: relative;
+  @media (max-width: 600px) {
+    height: 58vw;
+  }
 `;
 
 const AnimeTitle = styled.div`

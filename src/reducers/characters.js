@@ -1,32 +1,32 @@
 import {
-  REQUEST_SINGLE_ANIME,
-  RECIEVE_SINGLE_ANIME_DATA,
-  REQUEST_SINGLE_ANIME_FAILED,
+  REQUEST_ANIME_CHARACTERS,
+  RECIEVE_ANIME_CHARACTERS_DATA,
+  REQUEST_ANIME_CHARACTERS_FAILED,
 } from 'actions/singleAnime';
 
-const initialStateAnimeList = {
+const initialAnimeCharacters = {
   isFeching: false,
-  anime: {},
+  characters: [],
   error: false,
   errorMessage: '',
 };
 
-export default function singleAnime(state = initialStateAnimeList, action) {
+export default function animeCharacters(state = initialAnimeCharacters, action) {
   switch (action.type) {
-    case REQUEST_SINGLE_ANIME:
+    case REQUEST_ANIME_CHARACTERS:
       return {
         ...state,
         isFeching: true,
         error: false,
       };
-    case RECIEVE_SINGLE_ANIME_DATA:
+    case RECIEVE_ANIME_CHARACTERS_DATA:
       return {
         ...state,
         isFeching: false,
-        anime: { ...action.payload.anime },
+        characters: action.payload.characters,
         error: false,
       };
-    case REQUEST_SINGLE_ANIME_FAILED:
+    case REQUEST_ANIME_CHARACTERS_FAILED:
       return {
         ...state,
         error: true,
