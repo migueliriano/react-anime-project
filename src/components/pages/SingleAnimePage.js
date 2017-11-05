@@ -55,7 +55,7 @@ const ColumnBodyPage = ColumnAnimeinfo.extend`
 const CharacterBoxInfo = props => (
   <CharacterBox key={props.id}>
     <img
-      style={{ maxWidth: 100, height: 200 }}
+      style={{ maxWidth: 100, height: 150 }}
       src={
         !_.isNull(props.attributes.image) ?
           props.attributes.image.original :

@@ -5,6 +5,10 @@ import {
   REQUEST_NEXT_ANIMES_LIST,
 } from 'actions/animeList';
 
+/**
+ * App's initial state, Redux will use these values
+ * to bootstrap our app, before having a generated state.
+ */
 const initialStateAnimeList = {
   isFeching: false,
   animes: [],
@@ -12,6 +16,13 @@ const initialStateAnimeList = {
   errorMessage: '',
 };
 
+/**
+ * Reducer - this part is in charge of changing the global state
+ *
+ * @param {Object=} state  - App's current state.
+ * @param {object}  action - This has the action will be Fired.
+ * @returns {Object} Returns the app's new state.
+ */
 export default function animeList(state = initialStateAnimeList, action) {
   switch (action.type) {
     case REQUEST_ANIMES_LIST:

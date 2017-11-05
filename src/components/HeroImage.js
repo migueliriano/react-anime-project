@@ -36,6 +36,9 @@ class HeroImage extends React.Component {
     window.removeEventListener('scroll', this.handleParallaxScroll);
   };
 
+  /**
+   * Move the brackground of the hero image by the scroll position
+   */
   handleParallaxScroll = () => {
     document.querySelector('#hero-img').style.backgroundPositionY = `${window.scrollY}px`;
   };
