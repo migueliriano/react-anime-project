@@ -1,111 +1,13 @@
-import BASE_API_URL from './constants';
-
-/** @export const @type {string} */
-export const REQUEST_SINGLE_ANIME = 'REQUEST_SINGLE_ANIME';
-
-/** @export const @type {string} */
-export const RECIEVE_SINGLE_ANIME_DATA = 'RECIEVE_SINGLE_ANIME_DATA';
-
-/** @export const @type {string} */
-export const REQUEST_SINGLE_ANIME_FAILED = 'REQUEST_SINGLE_ANIME_FAILED';
-
-/** @export const @type {string} */
-export const REQUEST_ANIME_CHARACTERS = 'REQUEST_ANIME_CHARACTERS';
-
-/** @export const @type {string} */
-export const RECIEVE_ANIME_CHARACTERS_DATA = 'RECIEVE_ANIME_CHARACTERS_DATA';
-
-/** @export const @type {string} */
-export const REQUEST_ANIME_CHARACTERS_FAILED = 'REQUEST_ANIME_CHARACTERS_FAILED';
-
-/**
- * Return object to execute the action `REQUEST_SINGLE_ANIME`
- *
- * @return {object}
- */
-export const requestSingleAnime = () => (
-  {
-    type: REQUEST_SINGLE_ANIME,
-    payload: {
-      text: 'Request Single Anime',
-    },
-  }
-);
-
-/**
- * Return object to execute the action `REQUEST_SINGLE_ANIME_FAILED`
- *
- * @param {string} errMsg - Error Message
- *
- * @return {object}
- */
-export const requestSingleAnimeFailed = errMsg => (
-  {
-    type: REQUEST_SINGLE_ANIME_FAILED,
-    text: 'Request Single Anime Failed',
-    payload: new Error(errMsg),
-  }
-);
-
-/**
- * Returns object to execute the action `RECIEVE_SINGLE_ANIME_DATA`
- *
- * @param {object} animes - Single anime from the api request
- *
- * @returns {object}
- */
-export const receiveSingleAnime = anime => (
-  {
-    type: RECIEVE_SINGLE_ANIME_DATA,
-    text: 'Receive Single Anime',
-    payload: {
-      anime,
-    },
-  }
-);
-
-/**
- * Return object to execute the action `REQUEST_ANIME_CHARACTERS`
- *
- * @return {object}
- */
-export const requestCharacters = () => (
-  {
-    text: 'Request Anime Characters',
-    type: REQUEST_ANIME_CHARACTERS,
-  }
-);
-
-/**
- *
- * @param {array<object>} characters - all characters list from the api request
- *
- * @return {object}
- */
-export const receiveCharacters = characters => (
-  {
-    type: RECIEVE_ANIME_CHARACTERS_DATA,
-    text: 'Received Anime Characters List Page',
-    payload: {
-      characters,
-    },
-  }
-);
-
-/**
- * Return object to execute the action `REQUEST_SINGLE_ANIME_FAILED`
- *
- * @param {string} errMsg - Error Message
- *
- * @return {object}
- */
-export const requestCharacterFailed = errMsg => (
-  {
-    type: REQUEST_ANIME_CHARACTERS_FAILED,
-    text: 'Request Anime Characters Failed',
-    payload: new Error(errMsg),
-  }
-);
+import {
+  requestSingleAnime,
+  requestSingleAnimeFailed,
+  receiveSingleAnime,
+  requestCharacters,
+  receiveCharacters,
+  requestCharacterFailed,
+  singleAnimeUrl,
+  singleCharacterUrl,
+} from './singleAnimeCreator.js';
 
 /**
  * Fetch all the character url and return the response of each request as json or an error
@@ -124,7 +26,7 @@ export const fetchCharacters = (characters, limit = 7) => async (dispatch) => {
     const sliceCharacters = characters.slice(0, limit);
 
     sliceCharacters.forEach(({ id }) => {
-      const fetchsUrl = fetch(`https://kitsu.io/api/edge/anime-characters/${id}/character`);
+      const fetchsUrl = fetch(singleCharacterUrl(id));
       charactersFetchs.push(fetchsUrl);
     });
 
@@ -151,7 +53,7 @@ export const fetchSingleAnime = animeId => async (dispatch, getState) => {
   }
   dispatch(requestSingleAnime());
   try {
-    const response = await fetch(`${BASE_API_URL}anime/${animeId}?include=animeCharacters`);
+    const response = await fetch(singleAnimeUrl(animeId));
     const anime = await response.json();
     dispatch(receiveSingleAnime(anime.data));
     const { relationships } = anime.data;

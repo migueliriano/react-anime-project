@@ -3,7 +3,7 @@ import {
   RECIEVE_ANIMES_LIST_DATA,
   REQUEST_ANIMES_LIST_FAILED,
   REQUEST_NEXT_ANIMES_LIST,
-} from 'actions/animeList';
+} from 'actions/animeListCreator';
 
 /**
  * App's initial state, Redux will use these values

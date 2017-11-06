@@ -2,7 +2,7 @@ import {
   REQUEST_SINGLE_ANIME,
   RECIEVE_SINGLE_ANIME_DATA,
   REQUEST_SINGLE_ANIME_FAILED,
-} from 'actions/singleAnime';
+} from 'actions/singleAnimeCreator';
 
 /**
  * App's initial state, Redux will use these values
