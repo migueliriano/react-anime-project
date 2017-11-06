@@ -51,6 +51,7 @@ class AnimeGrid extends React.PureComponent {
     }
   };
 
+  /** Fech the next page if is in the end of the limit of the scrool setup in the option */
   handleScroll = () => {
     if (this.props.isFeching) {
       return;
@@ -64,6 +65,7 @@ class AnimeGrid extends React.PureComponent {
     }
   }
 
+  /** Fech the next page if this function is trigger */
   handleLoadMore = () => this.props.fetchNextPageAnimeList();
 
 
