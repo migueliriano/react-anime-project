@@ -44,7 +44,7 @@ export const fetchCharacters = (characters, limit = 7) => async (dispatch) => {
  *
  * @param {int} animeId - Anime Id to fetch
  *
- * @return {array|string} Return an array of object of all character or an error if the 
+ * @return {array|string} Return an array of object of all character or an error if the
  * request failed
  */
 export const fetchSingleAnime = animeId => async (dispatch, getState) => {

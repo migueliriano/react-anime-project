@@ -20,18 +20,18 @@ export const REQUEST_ANIME_CHARACTERS_FAILED = 'REQUEST_ANIME_CHARACTERS_FAILED'
 
 /**
  * @export const @type {func}
- * 
+ *
  * @param {int} id - Anime id to fetch data.
- * 
+ *
  * @return {string} Url to fetch a single anime
  */
 export const singleAnimeUrl = id => `${BASE_API_URL}anime/${id}?include=animeCharacters`;
 
 /**
  * @export const @type {func}
- * 
+ *
  * @param {int} id - Character id.
- * 
+ *
  * @return {string} Url to fetch a single character
  */
 export const singleCharacterUrl = id => `${BASE_API_URL}anime-characters/${id}/character`;
