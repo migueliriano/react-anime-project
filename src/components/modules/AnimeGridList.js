@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import AnimeBoxLink from 'components/AnimeBoxLink';
+import AnimeBoxLink from 'components/modules/AnimeBoxLink';
 
 import GridContainer from 'style/animeGridList';
 

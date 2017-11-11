@@ -8,8 +8,10 @@ import {
 /**
  * App's initial state, Redux will use these values
  * to bootstrap our app, before having a generated state.
+ *
+ * @export
  */
-const initialStateAnimeList = {
+export const initialStateAnimeList = {
   isFeching: false,
   animes: [],
   error: false,
@@ -47,7 +49,7 @@ export default function animeList(state = initialStateAnimeList, action) {
       return {
         ...state,
         error: true,
-        errorMessage: action.payload.errorMessage,
+        errorMessage: action.payload,
       };
     default:
       return state;

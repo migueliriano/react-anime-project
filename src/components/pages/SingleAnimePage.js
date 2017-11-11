@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
 
-import HeroImage from 'components/HeroImage';
-import AnimeMainInfo from 'components/AnimeMainInfo';
-import AnimeCard from 'components/AnimeCard';
-import YoutubeVideo from 'components/YoutubeVideo';
-import Logo from 'components/Logo';
-import CharacterBoxInfo from 'components/CharacterBoxInfo';
+import HeroImage from 'components/modules/HeroImage';
+import AnimeMainInfo from 'components/modules/AnimeMainInfo';
+import AnimeCard from 'components/modules/AnimeCard';
+import YoutubeVideo from 'components/modules/YoutubeVideo';
+import Logo from 'components/modules/Logo';
+import CharacterBoxInfo from 'components/modules/CharacterBoxInfo';
 
 import {
   SinglePageContainer,

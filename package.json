@@ -28,6 +28,16 @@
   "precommit": [
     "lint-precommit"
   ],
+  "jest": {
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
   "devDependencies": {
     "babel-eslint": "^8.0.0",
     "esdoc": "^1.0.3",

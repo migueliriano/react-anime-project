@@ -89,8 +89,8 @@ export const receiveSingleAnime = anime => (
  */
 export const requestCharacters = () => (
   {
-    text: 'Request Anime Characters',
     type: REQUEST_ANIME_CHARACTERS,
+    text: 'Request Anime Characters',
   }
 );
 
