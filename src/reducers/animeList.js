@@ -48,6 +48,7 @@ export default function animeList(state = initialStateAnimeList, action) {
     case REQUEST_ANIMES_LIST_FAILED:
       return {
         ...state,
+        isFeching: false,
         error: true,
         errorMessage: action.payload,
       };

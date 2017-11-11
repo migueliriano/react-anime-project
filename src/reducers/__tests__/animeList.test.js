@@ -64,12 +64,19 @@ describe('anime list reduces', () => {
   it('should handle `REQUEST_ANIMES_LIST_FAILED`', () => {
     const errMsg = 'URL not found';
 
+    const state = Object.freeze({
+      isFeching: true,
+      error: false,
+      errorMessage: '',
+      animes: [],
+    });
+
     const expected = {
       isFeching: false,
       error: true,
       errorMessage: new Error(errMsg),
       animes: [],
     };
-    expect(animeList(undefined, animeListCreator.requestFailed(errMsg))).toEqual(expected);
+    expect(animeList(state, animeListCreator.requestFailed(errMsg))).toEqual(expected);
   });
 });

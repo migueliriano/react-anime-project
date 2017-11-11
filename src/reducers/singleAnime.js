@@ -42,6 +42,7 @@ export default function singleAnime(state = initialStateAnimeList, action) {
     case REQUEST_SINGLE_ANIME_FAILED:
       return {
         ...state,
+        isFeching: false,
         error: true,
         errorMessage: action.payload,
       };

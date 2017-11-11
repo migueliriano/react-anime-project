@@ -42,6 +42,7 @@ export default function animeCharacters(state = initialAnimeCharacters, action) 
     case REQUEST_ANIME_CHARACTERS_FAILED:
       return {
         ...state,
+        isFeching: false,
         error: true,
         errorMessage: action.payload,
       };

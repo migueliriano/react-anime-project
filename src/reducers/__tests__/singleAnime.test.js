@@ -1,88 +1,79 @@
 import * as singleAnimeCreator from 'actions/singleAnimeCreator';
 
-import characters from '../characters';
+import singleAnime from '../singleAnime';
 
 describe('characters reducers', () => {
   it('should return the default state', () => {
     const initialStateAnimeList = {
       isFeching: false,
-      characters: [],
+      anime: {},
       error: false,
       errorMessage: '',
     };
-    expect(characters(undefined, {})).toEqual(initialStateAnimeList);
+    expect(singleAnime(undefined, {})).toEqual(initialStateAnimeList);
   });
 
-  it('should handle `REQUEST_ANIME_CHARACTERS`', () => {
+  it('should handle `REQUEST_SINGLE_ANIME`', () => {
     const state = Object.freeze({
       isFeching: false,
-      characters: [],
+      anime: {},
       error: false,
       errorMessage: '',
     });
 
     const expected = {
       isFeching: true,
-      characters: [],
+      anime: {},
       error: false,
       errorMessage: '',
     };
 
-    expect(characters(state, singleAnimeCreator.requestCharacters())).toEqual(expected);
+    expect(singleAnime(state, singleAnimeCreator.requestSingleAnime())).toEqual(expected);
   });
 
-  it('should handle `RECIEVE_ANIME_CHARACTERS_DATA`', () => {
+  it('should handle `RECIEVE_SINGLE_ANIME_DATA`', () => {
     const state = Object.freeze({
       isFeching: true,
-      characters: [],
+      anime: {},
       error: false,
       errorMessage: '',
     });
 
-    const charactersData = [
-      {
-        data: {
-          id: '1',
-          type: 'characters',
-        },
-      },
-      {
-        data: {
-          id: '2',
-          type: 'characters',
-        },
-      },
-    ];
+    const anime = {
+      id: '1',
+      type: 'anime',
+    };
+
     const expected = {
       isFeching: false,
-      characters: charactersData,
+      anime,
       error: false,
       errorMessage: '',
     };
 
-    expect(characters(state, singleAnimeCreator.receiveCharacters(charactersData)))
+    expect(singleAnime(state, singleAnimeCreator.receiveSingleAnime(anime)))
       .toEqual(expected);
   });
 
 
-  it('should handle `REQUEST_ANIME_CHARACTERS_FAILED`', () => {
+  it('should handle `REQUEST_SINGLE_ANIME_FAILED`', () => {
     const errMsg = 'URL not found';
 
     const state = Object.freeze({
       isFeching: true,
-      characters: [],
+      anime: {},
       error: false,
       errorMessage: '',
     });
 
     const expected = {
       isFeching: false,
-      characters: [],
+      anime: {},
       error: true,
       errorMessage: new Error(errMsg),
     };
 
-    expect(characters(state, singleAnimeCreator.requestCharacterFailed(errMsg)))
+    expect(singleAnime(state, singleAnimeCreator.requestSingleAnimeFailed(errMsg)))
       .toEqual(expected);
   });
 });
