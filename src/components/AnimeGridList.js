@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import AnimeBoxLink from 'components/AnimeBoxLink';
 
-import {
-  GridContainer,
-} from 'style/animeGridList';
+import GridContainer from 'style/animeGridList';
 
 class AnimeGridList extends React.PureComponent {
   static propTypes = {
