@@ -16,7 +16,6 @@ const Home = (props) => {
       <Header>
         <Logo />
       </Header>
-      {/* <div className="filter-nav">Filter Nav</div> */}
       <AnimeGrid
         animes={animes}
         fetchNextPageAnimeList={fetchNextPageAnimeList}

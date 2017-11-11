@@ -1,37 +1,15 @@
 import React from 'react';
-import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const MainInfoContainer = Styled.div`
-  border: solid 1px #edeeee;
-  max-width: 300px;
-  display: inline-block;
-`;
-
-const PosterContainer = Styled.div`
-  padding: 15px;
-`;
-
-const PosterImage = Styled.img`
-  max-width: 220px;
-`;
-const AnimeDetails = Styled.div`
-  background-color: #f5f8f9;
-`;
-const Row = Styled.div`
-  padding: 10px 15PX;
-  border-bottom: 1px solid #eee;
-`;
-
-const TitleDetail = Styled.div`
-  width: 40%;
-  display: inline-block;
-  color: #0591da;
-  text-transform: capitalize;
-  font-weight: bold;
-`;
-
-const Detail = Styled.span``;
+import {
+  MainInfoContainer,
+  PosterContainer,
+  PosterImage,
+  AnimeDetails,
+  Row,
+  TitleDetail,
+  Detail,
+} from 'style/animeMainInfo';
 
 const AnimeMainInfo = props => (
   <MainInfoContainer>

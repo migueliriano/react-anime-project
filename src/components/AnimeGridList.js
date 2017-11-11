@@ -1,15 +1,11 @@
 import React from 'react';
-import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 
 import AnimeBoxLink from 'components/AnimeBoxLink';
 
-const GridContainer = Styled.section`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  padding: 30px;
-`;
+import {
+  GridContainer,
+} from 'style/animeGridList';
 
 class AnimeGridList extends React.PureComponent {
   static propTypes = {

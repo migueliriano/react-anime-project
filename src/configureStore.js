@@ -6,6 +6,14 @@ import rootReducer from './reducers';
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 /* eslint-enable */
 
+/**
+ *
+ * @export @type {function}
+ *
+ * @param {*} preloadedState - the intiial state of redux.
+ *
+ * @return {object}  An object that holds the complete state of your app
+ */
 export default function configureStore(preloadedState) {
   return createStore(
     rootReducer,

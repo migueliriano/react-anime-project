@@ -1,21 +1,15 @@
 import React from 'react';
 
-import Styled from 'styled-components';
-import CircularProgress from 'material-ui/CircularProgress';
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
 import _ from 'underscore';
+
+import {
+  LoadMoreContainer,
+  CircularProgressStyle,
+  GridContainer,
+} from 'style/animeGrid';
 import AnimeGridList from './AnimeGridList';
-
-const LoadMoreContainer = Styled.div`
-  text-align: center;
-`;
-
-const CircularProgressStyle = Styled(CircularProgress)`
-  text-align: center;
-`;
-
-const GridContainer = Styled.div``;
 
 class AnimeGrid extends React.PureComponent {
   static defaultProps = {
@@ -36,7 +30,7 @@ class AnimeGrid extends React.PureComponent {
 
   constructor() {
     super();
-    this.handleScroll = _.debounce(this.handleScroll, 50);
+    this.handleScroll = _.debounce(this.handleScroll, 20);
   }
 
   state = {
@@ -61,8 +55,8 @@ class AnimeGrid extends React.PureComponent {
 
   componentWillReceiveProps = ({ animes }) => {
     if (this.props.animes.length !== animes.length) {
-      const newAnimeData = this.getInitialDataSource(animes);
-      this.setState({ dataSource: newAnimeData });
+      const newDataSource = this.getInitialDataSource(animes);
+      this.setState({ dataSource: newDataSource });
     }
   }
 
@@ -73,6 +67,13 @@ class AnimeGrid extends React.PureComponent {
     }
   };
 
+  /**
+   * Slide the data using the `dataSourceLimit` from the props.
+   *
+   * @param {array} animes - Array data that will be sliced.
+   * @return {array} Data sliced with if `animes` is mayor of dataSourceLimit`
+   * the otherwise return the variable was passed.
+   */
   getInitialDataSource = (animes) => {
     const { dataSourceLimit } = this.props;
     if (animes.length > dataSourceLimit) {
@@ -84,9 +85,15 @@ class AnimeGrid extends React.PureComponent {
     return animes;
   }
 
+  /**
+   * Function to set state the `dataSource` with the prev page list.
+   *
+   * @return {undefined}
+   */
   setPrevPageDataSource = () => {
     const isScrollDirectionTop = window.scrollY < this.lastScrollTop;
     const currentScrollPosition = window.scrollY - this.props.loadBeforeScrollEnd;
+
     if (isScrollDirectionTop && currentScrollPosition <= 0) {
       const firstDataSource = this.state.dataSource[0];
       const { animes } = this.props;
@@ -95,12 +102,10 @@ class AnimeGrid extends React.PureComponent {
         return;
       }
 
-      const firstElementIndex =
-        animes.findIndex(element => element.id === firstDataSource.id);
+      const dataSourceLimit = this.getDataSourceLimits(firstDataSource, animes);
+      const { lastIndex } = dataSourceLimit;
 
-      const dataSourceLimitMiddle = (this.props.dataSourceLimit / 2);
-      const lastIndex = firstElementIndex + dataSourceLimitMiddle;
-      let startIndex = firstElementIndex - dataSourceLimitMiddle;
+      let { startIndex } = dataSourceLimit;
 
       startIndex = startIndex < 0 ? 0 : startIndex;
 
@@ -112,30 +117,55 @@ class AnimeGrid extends React.PureComponent {
     this.lastScrollTop = window.scrollY;
   }
 
+  /**
+   * Function to set state the `dataSource` with the next page list.
+   *
+   * @return {undefined}
+   */
   setNextPageDataSource = () => {
     const { dataSource } = this.state;
     const { animes } = this.props;
+
     const isNotLastDatasource =
       animes[animes.length - 1].id !== dataSource[dataSource.length - 1].id;
+
     const currentWindowHeight =
       (window.innerHeight + window.scrollY) + this.props.loadBeforeScrollEnd;
 
     if (currentWindowHeight >= document.body.offsetHeight && isNotLastDatasource) {
       const lastDataSourceItem = this.state.dataSource[this.state.dataSource.length - 1];
 
-      const lastElementIndex =
-        animes.findIndex(element => element.id === lastDataSourceItem.id);
-
-      const dataSourceLimitMiddle = (this.props.dataSourceLimit / 2);
-      const lastIndex = lastElementIndex + dataSourceLimitMiddle;
-      const startIndex = lastElementIndex - dataSourceLimitMiddle;
+      const { startIndex, lastIndex } = this.getDataSourceLimits(lastDataSourceItem, animes);
 
       const newDataSource = animes.slice(startIndex, lastIndex);
 
       this.setState({ dataSource: newDataSource });
     }
   }
+  /**
+   * Split the `sourceData` in a half filter by a `itemData`
+   *
+   * @param {object} itemData - An item object to get the index of the data source
+   * @param {array<object>} sourceData - Data will be filter to get the index
+   *
+   * @return {object} with the `startIndex` and `lastIndex`.
+   */
+  getDataSourceLimits = (itemData, sourceData) => {
+    const elementIndex =
+      sourceData.findIndex(element => element.id === itemData.id);
+    const dataSourceLimitMiddle = (this.props.dataSourceLimit / 2);
 
+    return {
+      startIndex: elementIndex - dataSourceLimitMiddle,
+      lastIndex: elementIndex + dataSourceLimitMiddle,
+    };
+  }
+
+  /**
+   * Function to trigger the `fetchNextPageAnimeList` if is in the end of the paged
+   *
+   * @return {undefined}
+   */
   fetchNextPageAnime = () => {
     if (this.props.isFeching) {
       return;
@@ -154,14 +184,22 @@ class AnimeGrid extends React.PureComponent {
 
   lastScrollTop = 0;
 
-  /** Fech the next page if is in the end of the limit of the scrool setup in the option */
+  /**
+   * Function to handle all the scroll events that will be trigger
+   *
+   * @return {undefined}
+   */
   handleScroll = () => {
     this.fetchNextPageAnime();
     this.setPrevPageDataSource();
     this.setNextPageDataSource();
   }
 
-  /** Fech the next page if this function is trigger */
+  /**
+   * Function that goig to trigger the `fetchNextPageAnimeList`
+   *
+   * @return {undefined}
+   */
   handleLoadMore = () => this.props.fetchNextPageAnimeList();
 
   render = () => {

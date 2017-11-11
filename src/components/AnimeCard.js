@@ -1,29 +1,11 @@
 import React from 'react';
-import Styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const CardContainer = Styled.div`
-  width: 60vw;
-  margin-bottom: 30px;
-
-  @media (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const Header = Styled.div`
-  padding-bottom: 10px;
-  font-size: 20px;
-  font-weight: bold;
-`;
-
-const BodyContainer = Styled.div`
-  padding: 10px;
-  background-color: #f3f3f3;
-  border: 1px solid #d0cdcd;
-  line-height: 30px;
-  border-radius: 2px;
-`;
+import {
+  CardContainer,
+  Header,
+  BodyContainer,
+} from 'style/animeCard';
 
 const AnimeCard = props => (
   <CardContainer>

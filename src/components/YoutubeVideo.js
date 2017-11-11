@@ -8,7 +8,11 @@ const YoutubeVideo = (props) => {
 };
 
 YoutubeVideo.propTypes = {
-  videoId: PropTypes.string.isRequired,
+  videoId: PropTypes.string,
+};
+
+YoutubeVideo.defaultProps = {
+  videoId: 'RqJVa0fl01w',
 };
 
 export default YoutubeVideo;

@@ -18,7 +18,9 @@ const initialAnimeCharacters = {
 /**
  * Reducer - this part is in charge of changing the global state
  *
- * @param {Object=} state  - App's current state.
+ * @typedef {object} initialAnimeCharacters
+ *
+ * @param {Object=initialAnimeCharacters} state  - App's current state.
  * @param {object}  action - This has the action will be Fired.
  * @returns {Object} Returns the app's new state.
  */
