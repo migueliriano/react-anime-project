@@ -1,4 +1,4 @@
-import * as animeListCreator from 'actions/animeListCreator';
+import * as animeListCreator from 'actions/animeListCreators';
 
 import animeList from '../animeList';
 

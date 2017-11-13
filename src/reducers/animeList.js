@@ -3,15 +3,16 @@ import {
   RECIEVE_ANIMES_LIST_DATA,
   REQUEST_ANIMES_LIST_FAILED,
   REQUEST_NEXT_ANIMES_LIST,
-} from 'actions/animeListCreator';
+} from 'actions/animeListCreators';
 
 /**
  * App's initial state, Redux will use these values
  * to bootstrap our app, before having a generated state.
  *
- * @export
+ * @type {object}
+ * 
  */
-export const initialStateAnimeList = {
+const initialStateAnimeList = {
   isFeching: false,
   animes: [],
   error: false,

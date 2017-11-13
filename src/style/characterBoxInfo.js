@@ -22,9 +22,9 @@ export const CharacterBox = Styled.div`
  * @return {Component} Returns a new component with the style applied
  */
 export const CharacterName = Styled.div`
-  font-weight: 'bold';
+  font-weight: bold;
   max-width: 100px;
-  line-height: '20px';
+  line-height: 20px;
 `;
 
 /**

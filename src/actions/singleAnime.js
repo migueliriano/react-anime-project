@@ -7,7 +7,7 @@ import {
   requestCharacterFailed,
   singleAnimeUrl,
   singleCharacterUrl,
-} from './singleAnimeCreator.js';
+} from './singleAnimeCreators.js';
 
 /**
  * Fetch all the character url and return the response of each request as json or an error

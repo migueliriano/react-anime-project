@@ -2,11 +2,14 @@ import {
   REQUEST_ANIME_CHARACTERS,
   RECIEVE_ANIME_CHARACTERS_DATA,
   REQUEST_ANIME_CHARACTERS_FAILED,
-} from 'actions/singleAnimeCreator';
+} from 'actions/singleAnimeCreators';
 
 /**
  * App's initial state, Redux will use these values
  * to bootstrap our app, before having a generated state.
+ * 
+ * @type {object}
+ * 
  */
 const initialAnimeCharacters = {
   isFeching: false,

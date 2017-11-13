@@ -2,13 +2,15 @@ import {
   REQUEST_SINGLE_ANIME,
   RECIEVE_SINGLE_ANIME_DATA,
   REQUEST_SINGLE_ANIME_FAILED,
-} from 'actions/singleAnimeCreator';
+} from 'actions/singleAnimeCreators';
 
 /**
  * App's initial state, Redux will use these values
  * to bootstrap our app, before having a generated state.
+ * 
+ * @type {object}
  */
-const initialStateAnimeList = {
+const initialStateSingleAnime = {
   isFeching: false,
   anime: {},
   error: false,
@@ -18,13 +20,13 @@ const initialStateAnimeList = {
 /**
  * Reducer - this part is in charge of changing the global state
  *
- * @typedef {object} initialStateAnimeList
+ * @typedef {object} initialStateSingleAnime
  *
- * @param {Object=initialStateAnimeList} state  - App's current state.
+ * @param {Object=initialStateSingleAnime} state  - App's current state.
  * @param {object}  action - This has the action will be Fired.
  * @returns {Object} Returns the app's new state.
  */
-export default function singleAnime(state = initialStateAnimeList, action) {
+export default function singleAnime(state = initialStateSingleAnime, action) {
   switch (action.type) {
     case REQUEST_SINGLE_ANIME:
       return {

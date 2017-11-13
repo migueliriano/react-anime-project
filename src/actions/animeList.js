@@ -4,11 +4,12 @@ import {
   receiveAnime,
   requestNextpage,
   ANIMELIST_URL,
-} from './animeListCreator';
+} from './animeListCreators';
 
 /**
  * This variable is used internaly for `fetchNextPageAnimeList`
  * to fetch the next page of the API
+ * 
  * @type {string}
  */
 let nextPageUrl = '';
@@ -17,13 +18,15 @@ let nextPageUrl = '';
  * Execute the dispatch action to start the request and handle
  * the response returning the data or an error, calling an action depending the case.
  *
+ * @export const @type {function}
+ * 
  * @param {function} dispatch      - Native function to execute the action.
- * @param {string} url         - URL to make the request
+ * @param {string} url             - URL to make the request
  * @param {function} requestAction - Callback to execute the action to start the request
  *
  * @return {array<object>|string} Returns an array of animes or an error if the request failed
  */
-const fetchRequest = async (dispatch, url, requestAction) => {
+export const fetchRequest = async (dispatch, url, requestAction) => {
   dispatch(requestAction());
   try {
     const response = await fetch(url);
@@ -40,11 +43,13 @@ const fetchRequest = async (dispatch, url, requestAction) => {
  * Call `fetchRequest` and send the action to start the request using the url
  * in the const `ANIMELIST_URL`
  *
+ * @export const @type {function}
+ * 
  * @return {function}
  */
 export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
   if (!getState().animeList.animes.length) {
-    const respose = await fetchRequest(dispatch, ANIMELIST_URL, () => requestAnimes());
+    const respose = await fetchRequest(dispatch, ANIMELIST_URL, requestAnimes);
     nextPageUrl = respose.links.next;
   }
 };
@@ -53,9 +58,11 @@ export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
  * Call `fetchRequest` and send the action to start the request using the url
  * in the variable `nextPageUrl`.
  *
+ * @export const @type {function}
+ * 
  * @return {function}
  */
 export const fetchNextPageAnimeList = () => async (dispatch) => {
-  const respose = await fetchRequest(dispatch, nextPageUrl, () => requestNextpage());
+  const respose = await fetchRequest(dispatch, nextPageUrl, requestNextpage);
   nextPageUrl = respose.links.next;
 };

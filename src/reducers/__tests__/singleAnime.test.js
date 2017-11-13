@@ -1,4 +1,4 @@
-import * as singleAnimeCreator from 'actions/singleAnimeCreator';
+import * as singleAnimeCreator from 'actions/singleAnimeCreators';
 
 import singleAnime from '../singleAnime';
 
