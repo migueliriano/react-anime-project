@@ -80,4 +80,19 @@ describe('anime list reduces', () => {
     };
     expect(animeList(state, animeListCreator.requestFailed(errMsg))).toEqual(expected);
   });
+
+  it('should handle `SET_NEXT_ANIMES_LIST_PAGE_URL`', () => {
+    const nextPageUrl = 'https://kitsu.io/api/edge/anime?page%5Blimit%5D=15&page%5Boffset%5D=15';
+    const expected = {
+      isFeching: false,
+      error: false,
+      errorMessage: '',
+      animes: [],
+      nextPageUrl,
+    };
+
+    expect(
+      animeList(undefined, animeListCreator.setNextAnimesListPage(nextPageUrl)),
+    ).toEqual(expected);
+  });
 });
