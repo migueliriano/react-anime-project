@@ -9,6 +9,7 @@ describe('anime list reduces', () => {
       animes: [],
       error: false,
       errorMessage: '',
+      nextPageUrl: '',
     };
     expect(animeList(undefined, {})).toEqual(initialStateAnimeList);
   });

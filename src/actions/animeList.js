@@ -3,16 +3,9 @@ import {
   requestFailed,
   receiveAnime,
   requestNextpage,
+  setNextAnimesListPage,
   ANIMELIST_URL,
 } from './animeListCreators';
-
-/**
- * This variable is used internaly for `fetchNextPageAnimeList`
- * to fetch the next page of the API
- * 
- * @type {string}
- */
-let nextPageUrl = '';
 
 /**
  * Execute the dispatch action to start the request and handle
@@ -50,19 +43,20 @@ export const fetchRequest = async (dispatch, url, requestAction) => {
 export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
   if (!getState().animeList.animes.length) {
     const respose = await fetchRequest(dispatch, ANIMELIST_URL, requestAnimes);
-    nextPageUrl = respose.links.next;
+    dispatch(setNextAnimesListPage(respose.links.next));
   }
 };
 
 /**
- * Call `fetchRequest` and send the action to start the request using the url
- * in the variable `nextPageUrl`.
+ * Call `fetchRequest` and send the action to start the request using the the current state
+ * `nextPageUrl`
  *
  * @export const @type {function}
  * 
  * @return {function}
  */
-export const fetchNextPageAnimeList = () => async (dispatch) => {
+export const fetchNextPageAnimeList = () => async (dispatch, getState) => {
+  const nextPageUrl = getState().animeList.nextPageUrl;
   const respose = await fetchRequest(dispatch, nextPageUrl, requestNextpage);
-  nextPageUrl = respose.links.next;
+  dispatch(setNextAnimesListPage(respose.links.next));
 };

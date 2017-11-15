@@ -1,3 +1,5 @@
+import * as animeMocks from '../__mocks__/animes';
+
 import * as actionCreators from '../animeListCreators';
 
 describe('Anime list cretor actions', () => {
@@ -21,16 +23,8 @@ describe('Anime list cretor actions', () => {
   });
 
   it('should create an action to receive Anime', () => {
-    const animes = [
-      {
-        id: '1',
-        type: 'anime',
-      },
-      {
-        id: '2',
-        type: 'ova',
-      },
-    ];
+    const animes = animeMocks.animeListFetchResponse.data;
+
     const expected = {
       type: actionCreators.RECIEVE_ANIMES_LIST_DATA,
       text: 'Received Anime List Page',

@@ -3,6 +3,7 @@ import {
   RECIEVE_ANIMES_LIST_DATA,
   REQUEST_ANIMES_LIST_FAILED,
   REQUEST_NEXT_ANIMES_LIST,
+  SET_NEXT_ANIMES_LIST_PAGE_URL,
 } from 'actions/animeListCreators';
 
 /**
@@ -17,6 +18,7 @@ const initialStateAnimeList = {
   animes: [],
   error: false,
   errorMessage: '',
+  nextPageUrl: '',
 };
 
 /**
@@ -52,6 +54,11 @@ export default function animeList(state = initialStateAnimeList, action) {
         isFeching: false,
         error: true,
         errorMessage: action.payload,
+      };
+    case SET_NEXT_ANIMES_LIST_PAGE_URL:
+      return {
+        ...state,
+        nextPageUrl: action.payload.nextPageUrl,
       };
     default:
       return state;

@@ -1,6 +1,8 @@
-import * as actionCreators from '../singleAnimeCreators';
-
+import charactersFetchMock from '../__mocks__/characters';
+import * as animeMocks from '../__mocks__/animes';
 import BASE_API_URL from '../constants';
+
+import * as actionCreators from '../singleAnimeCreators';
 
 describe('single anime actions creator', () => {
   it('should create an action to request a single anime', () => {
@@ -25,10 +27,7 @@ describe('single anime actions creator', () => {
   });
 
   it('should create an action to receive a single anime object', () => {
-    const anime = {
-      id: '1',
-      type: 'anime',
-    };
+    const anime = animeMocks.singleAnimeFetchResponse;
 
     const expected = {
       type: actionCreators.RECIEVE_SINGLE_ANIME_DATA,
@@ -49,20 +48,7 @@ describe('single anime actions creator', () => {
   });
 
   it('should create an action to recieve anime characters', () => {
-    const characters = [
-      {
-        data: {
-          id: '1',
-          type: 'characters',
-        },
-      },
-      {
-        data: {
-          id: '2',
-          type: 'characters',
-        },
-      },
-    ];
+    const characters = charactersFetchMock;
 
     const expected = {
       type: actionCreators.RECIEVE_ANIME_CHARACTERS_DATA,
