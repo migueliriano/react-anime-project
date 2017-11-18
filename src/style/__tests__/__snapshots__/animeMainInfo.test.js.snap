@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`animeMainInfo style components Should render a AnimeDetails Component 1`] = `
+.c0 {
+  background-color: #f5f8f9;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeMainInfo style components Should render a Detail Component 1`] = `
+<span
+  className=""
+/>
+`;
+
+exports[`animeMainInfo style components Should render a MainInfoContainer Component 1`] = `
+.c0 {
+  border: solid 1px #edeeee;
+  max-width: 300px;
+  display: inline-block;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeMainInfo style components Should render a PosterContainer Component 1`] = `
+.c0 {
+  padding: 15px;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeMainInfo style components Should render a PosterImage Component 1`] = `
+.c0 {
+  max-width: 220px;
+}
+
+<img
+  className="c0"
+/>
+`;
+
+exports[`animeMainInfo style components Should render a Row Component 1`] = `
+.c0 {
+  padding: 10px 15PX;
+  border-bottom: 1px solid #eee;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeMainInfo style components Should render a TitleDetail Component 1`] = `
+.c0 {
+  width: 40%;
+  display: inline-block;
+  color: #0591da;
+  text-transform: capitalize;
+  font-weight: bold;
+}
+
+<div
+  className="c0"
+/>
+`;

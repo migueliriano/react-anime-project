@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`animeCard style components Should render a BodyContainer Component 1`] = `
+.c0 {
+  padding: 10px;
+  background-color: #f3f3f3;
+  border: 1px solid #d0cdcd;
+  line-height: 30px;
+  border-radius: 2px;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeCard style components Should render a CardContainer Component 1`] = `
+.c0 {
+  width: 60vw;
+  margin-bottom: 30px;
+}
+
+@media (max-width:768px) {
+  .c0 {
+    width: 100%;
+  }
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`animeCard style components Should render a Header Component 1`] = `
+.c0 {
+  padding-bottom: 10px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+<div
+  className="c0"
+/>
+`;

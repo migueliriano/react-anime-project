@@ -15,7 +15,7 @@ export const SinglePageContainer = Styled.div``;
  *
  * @export const @type {Component}
  *
- * @param {Component} Link - Link component
+ * @param {Component} CircularProgress - CircularProgress component
  *
  * @return {Component} Returns a new component with the style applied
  */

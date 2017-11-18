@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`animeGrid style components Should render a CircularProgressStyle Component 1`] = `
+.c0 {
+  text-align: center;
+}
+
+<CircularProgress
+  className="c0"
+  max={100}
+  min={0}
+  mode="indeterminate"
+  size={40}
+  thickness={3.5}
+  value={0}
+/>
+`;
+
+exports[`animeGrid style components Should render a GridContainer Component 1`] = `
+<div
+  className=""
+/>
+`;
+
+exports[`animeGrid style components Should render a LoadMoreContainer Component 1`] = `
+.c0 {
+  text-align: center;
+}
+
+<div
+  className="c0"
+/>
+`;

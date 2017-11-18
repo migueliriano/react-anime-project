@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`singleAnimePage style components Should render a CharacterBodyContainer Component 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`singleAnimePage style components Should render a CircularProgressStyle Component 1`] = `
+.c0 {
+  margin: 0 auto;
+}
+
+<CircularProgress
+  className="c0"
+  max={100}
+  min={0}
+  mode="indeterminate"
+  size={40}
+  thickness={3.5}
+  value={0}
+/>
+`;
+
+exports[`singleAnimePage style components Should render a ColumnAnimeinfo Component 1`] = `
+.c0 {
+  margin-left: 15px;
+  display: inline-block;
+}
+
+@media (max-width:768px) {
+  .c0 {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`singleAnimePage style components Should render a ColumnBodyPage Component 1`] = `
+.c0 {
+  margin-left: 15px;
+  display: inline-block;
+  margin-left: 50px;
+  vertical-align: top;
+}
+
+@media (max-width:768px) {
+  .c0 {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`singleAnimePage style components Should render a LogoLinkContainer Component 1`] = `
+.c0 {
+  text-align: center;
+  display: block;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`singleAnimePage style components Should render a SinglePageContainer Component 1`] = `
+<div
+  className=""
+/>
+`;

@@ -23,7 +23,6 @@ export const LinkBoxAnime = Styled(Link)`
   background-size: cover;
   color: #fff;
   border-radius: 5px;
-  background-image: url(${props => props.backgroundImage});
 
   @media (max-width: 768px) {
     width: 33vw;

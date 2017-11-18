@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`characterBoxInfo style components Should render a CharacterBox Component 1`] = `
+.c0 {
+  text-align: center;
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`characterBoxInfo style components Should render a CharacterImage Component 1`] = `
+.c0 {
+  max-width: 100px;
+  height: 150px;
+}
+
+<img
+  className="c0"
+/>
+`;
+
+exports[`characterBoxInfo style components Should render a CharacterName Component 1`] = `
+.c0 {
+  font-weight: bold;
+  max-width: 100px;
+  line-height: 20px;
+}
+
+<div
+  className="c0"
+/>
+`;

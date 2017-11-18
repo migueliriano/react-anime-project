@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`base style components Should render a Container Component 1`] = `
+.c0 {
+  max-width: 1020px;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`base style components Should render a Header Component 1`] = `
+.c0 {
+  text-align: center;
+  padding-top: 30px;
+}
+
+<header
+  className="c0"
+/>
+`;
+
+exports[`base style components Should render a Wrapper Component 1`] = `
+.c0 {
+  padding: 0;
+  margin: 0;
+}
+
+<section
+  className="c0"
+/>
+`;

@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`heroImage style components Should render a AnimeTitle Component 1`] = `
+.c0 {
+  background-color: rgba(0,0,0,.6);
+  padding-left: 15px;
+  color: #fff;
+  -webkit-align-self: flex-end;
+  -ms-flex-item-align: end;
+  align-self: flex-end;
+  width: 100%;
+  padding: 15px 30px;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+<div
+  className="c0"
+/>
+`;
+
+exports[`heroImage style components Should render a FullWidthImage Component 1`] = `
+.c0 {
+  height: 25vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+  background-image: url(https://goo.gl/VF2jwk);
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .c0 {
+    height: 58vw;
+  }
+}
+
+<section
+  className="c0"
+/>
+`;
+
+exports[`heroImage style components Should render a FullWidthImage but not background image Component 1`] = `
+.c0 {
+  height: initial;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 30px;
+  background-image: url();
+  position: relative;
+}
+
+@media (max-width:600px) {
+  .c0 {
+    height: 58vw;
+  }
+}
+
+<section
+  className="c0"
+/>
+`;
