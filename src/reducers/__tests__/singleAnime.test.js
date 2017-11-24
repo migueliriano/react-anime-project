@@ -2,30 +2,27 @@ import * as singleAnimeCreator from 'actions/singleAnimeCreators';
 
 import singleAnime from '../singleAnime';
 
+const initialStateAnimeList = Object.freeze({
+  isFeching: false,
+  anime: {},
+  error: false,
+  errorMessage: '',
+});
+
 describe('characters reducers', () => {
   it('should return the default state', () => {
-    const initialStateAnimeList = {
-      isFeching: false,
-      anime: {},
-      error: false,
-      errorMessage: '',
-    };
     expect(singleAnime(undefined, {})).toEqual(initialStateAnimeList);
   });
 
   it('should handle `REQUEST_SINGLE_ANIME`', () => {
     const state = Object.freeze({
+      ...initialStateAnimeList,
       isFeching: false,
-      anime: {},
-      error: false,
-      errorMessage: '',
     });
 
     const expected = {
+      ...initialStateAnimeList,
       isFeching: true,
-      anime: {},
-      error: false,
-      errorMessage: '',
     };
 
     expect(singleAnime(state, singleAnimeCreator.requestSingleAnime())).toEqual(expected);
@@ -33,10 +30,8 @@ describe('characters reducers', () => {
 
   it('should handle `RECIEVE_SINGLE_ANIME_DATA`', () => {
     const state = Object.freeze({
+      ...initialStateAnimeList,
       isFeching: true,
-      anime: {},
-      error: false,
-      errorMessage: '',
     });
 
     const anime = {
@@ -45,10 +40,8 @@ describe('characters reducers', () => {
     };
 
     const expected = {
-      isFeching: false,
+      ...initialStateAnimeList,
       anime,
-      error: false,
-      errorMessage: '',
     };
 
     expect(singleAnime(state, singleAnimeCreator.receiveSingleAnime(anime)))
@@ -60,15 +53,12 @@ describe('characters reducers', () => {
     const errMsg = 'URL not found';
 
     const state = Object.freeze({
+      ...initialStateAnimeList,
       isFeching: true,
-      anime: {},
-      error: false,
-      errorMessage: '',
     });
 
     const expected = {
-      isFeching: false,
-      anime: {},
+      ...initialStateAnimeList,
       error: true,
       errorMessage: new Error(errMsg),
     };

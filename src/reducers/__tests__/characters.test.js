@@ -2,41 +2,33 @@ import * as singleAnimeCreator from 'actions/singleAnimeCreators';
 
 import characters from '../characters';
 
+const initialStateAnimeList = Object.freeze({
+  isFeching: false,
+  characters: [],
+  error: false,
+  errorMessage: '',
+});
+
 describe('characters reducers', () => {
   it('should return the default state', () => {
-    const initialStateAnimeList = {
-      isFeching: false,
-      characters: [],
-      error: false,
-      errorMessage: '',
-    };
     expect(characters(undefined, {})).toEqual(initialStateAnimeList);
   });
 
   it('should handle `REQUEST_ANIME_CHARACTERS`', () => {
-    const state = Object.freeze({
-      isFeching: false,
-      characters: [],
-      error: false,
-      errorMessage: '',
-    });
-
     const expected = {
+      ...initialStateAnimeList,
       isFeching: true,
-      characters: [],
-      error: false,
-      errorMessage: '',
     };
 
-    expect(characters(state, singleAnimeCreator.requestCharacters())).toEqual(expected);
+    expect(
+      characters(initialStateAnimeList, singleAnimeCreator.requestCharacters()),
+    ).toEqual(expected);
   });
 
   it('should handle `RECIEVE_ANIME_CHARACTERS_DATA`', () => {
     const state = Object.freeze({
+      ...initialStateAnimeList,
       isFeching: true,
-      characters: [],
-      error: false,
-      errorMessage: '',
     });
 
     const charactersData = [
@@ -54,10 +46,9 @@ describe('characters reducers', () => {
       },
     ];
     const expected = {
+      ...initialStateAnimeList,
       isFeching: false,
       characters: charactersData,
-      error: false,
-      errorMessage: '',
     };
 
     expect(characters(state, singleAnimeCreator.receiveCharacters(charactersData)))
@@ -69,15 +60,12 @@ describe('characters reducers', () => {
     const errMsg = 'URL not found';
 
     const state = Object.freeze({
+      ...initialStateAnimeList,
       isFeching: true,
-      characters: [],
-      error: false,
-      errorMessage: '',
     });
 
     const expected = {
-      isFeching: false,
-      characters: [],
+      ...initialStateAnimeList,
       error: true,
       errorMessage: new Error(errMsg),
     };
