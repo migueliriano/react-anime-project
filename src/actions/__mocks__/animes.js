@@ -1,9 +1,9 @@
 /**
  * Example Response of Fetch Anime List
- * 
+ *
  * @export const
  * @type {object}
- * 
+ *
  */
 export const animeListFetchResponse = {
   data: [
@@ -25,10 +25,10 @@ export const animeListFetchResponse = {
 
 /**
  * Example Response of Fetch Single Anime
- * 
+ *
  * @export const
  * @type {object}
- * 
+ *
  */
 export const singleAnimeFetchResponse = {
   id: '1',

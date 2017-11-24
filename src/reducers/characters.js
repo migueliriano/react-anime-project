@@ -7,9 +7,9 @@ import {
 /**
  * App's initial state, Redux will use these values
  * to bootstrap our app, before having a generated state.
- * 
+ *
  * @type {object}
- * 
+ *
  */
 const initialAnimeCharacters = {
   isFeching: false,

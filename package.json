@@ -28,7 +28,7 @@
     "eject": "react-scripts eject"
   },
   "precommit": [
-    "lint-precommit"
+    "lint:precommit"
   ],
   "jest": {
     "coverageThreshold": {

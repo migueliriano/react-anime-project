@@ -12,7 +12,7 @@ import {
  * the response returning the data or an error, calling an action depending the case.
  *
  * @export const @type {function}
- * 
+ *
  * @param {function} dispatch      - Native function to execute the action.
  * @param {string} url             - URL to make the request
  * @param {function} requestAction - Callback to execute the action to start the request
@@ -37,7 +37,7 @@ export const fetchRequest = async (dispatch, url, requestAction) => {
  * in the const `ANIMELIST_URL`
  *
  * @export const @type {function}
- * 
+ *
  * @return {function}
  */
 export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
@@ -52,7 +52,7 @@ export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
  * `nextPageUrl`
  *
  * @export const @type {function}
- * 
+ *
  * @return {function}
  */
 export const fetchNextPageAnimeList = () => async (dispatch, getState) => {

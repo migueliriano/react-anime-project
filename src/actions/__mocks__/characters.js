@@ -1,9 +1,9 @@
 /**
  * Example Response of Fetch Characters
- * 
+ *
  * @export const
  * @type {array<object>}
- * 
+ *
  */
 const fetchCaractersResponse = [
   {

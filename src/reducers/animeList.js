@@ -11,7 +11,7 @@ import {
  * to bootstrap our app, before having a generated state.
  *
  * @type {object}
- * 
+ *
  */
 const initialStateAnimeList = {
   isFeching: false,
