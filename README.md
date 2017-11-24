@@ -1,5 +1,9 @@
 # react-anime-project
 
+
+[![Build Status](https://img.shields.io/travis/migueliriano/react-anime-project/master.svg)](https://travis-ci.org/migueliriano/react-anime-project)
+[![Maintainability](https://img.shields.io/codeclimate/maintainability/migueliriano/react-anime-project.svg)](https://codeclimate.com/github/migueliriano/react-anime-project/maintainability)
+
 In this APP you are going to see the latest animes in an interactive home page with a infinite feed. Also, you can find information about your favorite anime for example: characters, synopsis, start date, etc.
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), you can use all the default commands. 
@@ -7,8 +11,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 This project uses the public API [Kitsu](https://kitsu.docs.apiary.io/) to get the anime data.
 
 ---
-
-[![Build Status](https://img.shields.io/travis/migueliriano/react-anime-project/master.svg)](https://travis-ci.org/migueliriano/react-anime-project)
 
 ## Installing / Getting started
 react-anime-project is a really easy project to setup in your environment, you only need to run these commands:
