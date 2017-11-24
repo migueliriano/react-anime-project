@@ -1,7 +1,8 @@
 {
   "name": "react-anime-project",
   "version": "0.1.0",
-  "private": true,
+  "author": "Miguel Angel Liriano <mglphp@gmail.com> (https://www.linkedin.com/in/miguelangeliriano)",
+  "license": "MIT",
   "dependencies": {
     "material-ui": "^0.19.2",
     "prop-types": "^15.5.10",
@@ -19,9 +20,10 @@
     "start": "NODE_PATH=src react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
+    "test:coverage": "npm run test -- --coverage",
     "lint": "eslint src",
-    "lint-fix": "eslint --fix src",
-    "lint-precommit": "scripts/precommit-lint",
+    "lint:fix": "eslint --fix src",
+    "lint:precommit": "scripts/precommit-lint",
     "doc": "esdoc -c esdoc.json",
     "eject": "react-scripts eject"
   },
