@@ -6,6 +6,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 This project uses the public API [Kitsu](https://kitsu.docs.apiary.io/) to get the anime data.
 
+---
+
+[![Build Status](https://img.shields.io/travis/migueliriano/react-anime-project/master.svg)](https://travis-ci.org/migueliriano/react-anime-project)
+
 ## Installing / Getting started
 react-anime-project is a really easy project to setup in your environment, you only need to run these commands:
 
