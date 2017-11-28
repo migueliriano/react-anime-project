@@ -2,7 +2,7 @@ import * as singleAnimeCreator from 'actions/singleAnimeCreators';
 
 import characters from '../characters';
 
-const initialStateAnimeList = Object.freeze({
+const initialAnimeCharacters = Object.freeze({
   isFeching: false,
   characters: [],
   error: false,
@@ -11,23 +11,23 @@ const initialStateAnimeList = Object.freeze({
 
 describe('characters reducers', () => {
   it('should return the default state', () => {
-    expect(characters(undefined, {})).toEqual(initialStateAnimeList);
+    expect(characters(undefined, {})).toEqual(initialAnimeCharacters);
   });
 
   it('should handle `REQUEST_ANIME_CHARACTERS`', () => {
     const expected = {
-      ...initialStateAnimeList,
+      ...initialAnimeCharacters,
       isFeching: true,
     };
 
     expect(
-      characters(initialStateAnimeList, singleAnimeCreator.requestCharacters()),
+      characters(initialAnimeCharacters, singleAnimeCreator.requestCharacters()),
     ).toEqual(expected);
   });
 
   it('should handle `RECIEVE_ANIME_CHARACTERS_DATA`', () => {
     const state = Object.freeze({
-      ...initialStateAnimeList,
+      ...initialAnimeCharacters,
       isFeching: true,
     });
 
@@ -46,7 +46,7 @@ describe('characters reducers', () => {
       },
     ];
     const expected = {
-      ...initialStateAnimeList,
+      ...initialAnimeCharacters,
       isFeching: false,
       characters: charactersData,
     };
@@ -60,12 +60,12 @@ describe('characters reducers', () => {
     const errMsg = 'URL not found';
 
     const state = Object.freeze({
-      ...initialStateAnimeList,
+      ...initialAnimeCharacters,
       isFeching: true,
     });
 
     const expected = {
-      ...initialStateAnimeList,
+      ...initialAnimeCharacters,
       error: true,
       errorMessage: new Error(errMsg),
     };

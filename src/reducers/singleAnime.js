@@ -32,14 +32,12 @@ export default function singleAnime(state = initialStateSingleAnime, action) {
       return {
         ...state,
         isFeching: true,
-        error: false,
       };
     case RECIEVE_SINGLE_ANIME_DATA:
       return {
         ...state,
         isFeching: false,
         anime: { ...action.payload.anime },
-        error: false,
       };
     case REQUEST_SINGLE_ANIME_FAILED:
       return {
