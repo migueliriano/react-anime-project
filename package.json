@@ -21,8 +21,8 @@
     "build": "react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "test:coverage": "npm run test -- --coverage",
-    "lint": "eslint src",
-    "lint:fix": "eslint --fix src",
+    "lint": "eslint ./src/**/*.js, ./src/**/*.jsx",
+    "lint:fix": "eslint --fix ./src/**/*.js, ./src/**/*.jsx",
     "lint:precommit": "scripts/precommit-lint",
     "doc": "esdoc -c esdoc.json",
     "eject": "react-scripts eject"
