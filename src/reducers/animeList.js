@@ -37,16 +37,12 @@ export default function animeList(state = initialStateAnimeList, action) {
       return {
         ...state,
         isFeching: true,
-        error: false,
-        errorMessage: '',
       };
     case RECIEVE_ANIMES_LIST_DATA:
       return {
         ...state,
         isFeching: false,
         animes: [...state.animes, ...action.payload.animes],
-        error: false,
-        errorMessage: '',
       };
     case REQUEST_ANIMES_LIST_FAILED:
       return {
