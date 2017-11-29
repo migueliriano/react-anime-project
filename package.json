@@ -1,5 +1,8 @@
 {
   "name": "react-anime-project",
+  "config": {
+    "lint-paths": "./src/**/*.js ./src/**/*.test.js"
+  },
   "version": "0.1.0",
   "author": "Miguel Angel Liriano <mglphp@gmail.com> (https://www.linkedin.com/in/miguelangeliriano)",
   "license": "MIT",
@@ -21,14 +24,14 @@
     "build": "react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
     "test:coverage": "npm run test -- --coverage",
-    "lint": "eslint ./src/**/*.js, ./src/**/*.jsx",
-    "lint:fix": "eslint --fix ./src/**/*.js, ./src/**/*.jsx",
-    "lint:precommit": "scripts/precommit-lint",
+    "lint": "eslint $npm_package_config_lint_paths",
+    "lint:cache": "eslint --cache $npm_package_config_lint_paths",
+    "lint:fix": "eslint --fix $npm_package_config_lint_paths",
     "doc": "esdoc -c esdoc.json",
     "eject": "react-scripts eject"
   },
   "precommit": [
-    "lint:precommit"
+    "lint:cache"
   ],
   "jest": {
     "coverageThreshold": {
