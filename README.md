@@ -1,8 +1,8 @@
 # react-anime-project
 
-
 [![Build Status](https://img.shields.io/travis/migueliriano/react-anime-project/master.svg)](https://travis-ci.org/migueliriano/react-anime-project)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/migueliriano/react-anime-project.svg)](https://codeclimate.com/github/migueliriano/react-anime-project/maintainability)
+[![Coverage](https://img.shields.io/codeclimate/coverage/github//migueliriano/react-anime-project.svg)](https://codeclimate.com/github/migueliriano/react-anime-project/test_coverage)
 [![Website](https://img.shields.io/website-up-down-green-red/https/anime-reactjs.herokuapp.com.svg?label=heroku-website)](https://anime-reactjs.herokuapp.com/)
 
 In this APP you are going to see the latest animes in an interactive home page with a infinite feed. Also, you can find information about your favorite anime for example: characters, synopsis, start date, etc.
