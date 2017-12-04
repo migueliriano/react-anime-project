@@ -15,11 +15,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 react-anime-project is a really easy project to setup in your environment, you only need to run these commands:
 
 ```bash
-npm install
-npm start
+yarn install
+yarn start
 ```
-- `npm install`going to install all the dependency packages 
-- `npm start` going to compile our project and run a local server. 
+- `yarn install`going to install all the dependency packages
+- `yarn start` going to compile our project and run a local server.
 
  In this point you should be able to see the APP on the local url `http://localhost:3000/`.
 
@@ -28,13 +28,13 @@ npm start
 ```bash
 git clone https://github.com/migueliriano/react-anime-project.git
 cd react-anime-project/
-npm install
-npm start
+yarn install
+yarn start
 ```
 - `git clone` make a copy of the project in your local machine.
 - `cd react-anime-project/` Move to the respository folder
-- `npm install` install all the dependency packages
-- `npm start` Run the APP and open your browser in a local server `http://localhost:3000/`
+- `yarn install` install all the dependency packages
+- `yarn start` Run the APP and open your browser in a local server `http://localhost:3000/`
 
 ## Features
 
@@ -59,8 +59,7 @@ npm start
 
 ## Todo Tasks
 
-- [ ] Unit Test with 90% coverage or more
-- [ ] Set Order descending on Home Page infinite scroll
+[GitHub Board](https://github.com/migueliriano/react-anime-project/projects/1)
 
 ## Heroku
 Live page url with `master` branch: https://anime-reactjs.herokuapp.com
