@@ -1,5 +1,4 @@
-import * as animeMocks from '../__mocks__/animes';
-
+import * as animeMocks from '../__fixtures__/animes';
 import * as actionCreators from '../animeListCreators';
 
 describe('Anime list cretor actions', () => {

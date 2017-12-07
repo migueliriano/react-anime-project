@@ -1,5 +1,13 @@
 module.exports = {
     "extends": ["airbnb"],
+    "globals": {
+        "fetchMock": false,
+        "renderer": false,
+        "configureStore": false,
+        "thunk": false,
+        "shallow": false,
+        "toJson": false
+    },
     "env": {
         "browser": true,
         "jest": true

@@ -1,16 +1,18 @@
 import actions from '../index';
 
-import * as animeList from '../animeList';
 import * as animeListCreators from '../animeListCreators';
-import * as singleAnime from '../singleAnime';
 import * as singleAnimeCreators from '../singleAnimeCreators';
+import * as animeList from '../animeList';
+import singleAnime from '../singleAnime';
+import characters from '../characters';
 
 it('Get actions index', () => {
   const expected = {
     ...animeList,
-    ...singleAnime,
     ...singleAnimeCreators,
     ...animeListCreators,
+    singleAnime,
+    characters,
   };
   expect(actions).toMatchObject(expected);
 });

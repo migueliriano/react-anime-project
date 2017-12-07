@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchSingleAnime } from 'actions/singleAnime';
+import fetchSingleAnime from 'actions/singleAnime';
 
 import SinglePage from 'components/pages/SingleAnimePage';
 
