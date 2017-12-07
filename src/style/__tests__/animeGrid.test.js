@@ -1,9 +1,5 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import toJson from 'enzyme-to-json';
-
-import { shallow } from 'enzyme';
 
 import {
   LoadMoreContainer,

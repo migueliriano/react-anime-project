@@ -1,8 +1,4 @@
-import configureStore from 'redux-mock-store';
-import thunk from 'redux-thunk';
-import fetchMock from 'fetch-mock';
-
-import * as animeMocks from '../__mocks__/animes';
+import * as animeMocks from '../__fixtures__/animes';
 import * as actionCreators from '../animeListCreators';
 import * as actions from '../animeList';
 

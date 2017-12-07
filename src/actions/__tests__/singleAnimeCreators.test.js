@@ -1,7 +1,6 @@
-import charactersFetchMock from '../__mocks__/characters';
-import * as animeMocks from '../__mocks__/animes';
 import BASE_API_URL from '../constants';
 
+import * as animeMocks from '../__fixtures__/animes';
 import * as actionCreators from '../singleAnimeCreators';
 
 describe('single anime actions creator', () => {
@@ -38,38 +37,6 @@ describe('single anime actions creator', () => {
     };
     expect(actionCreators.receiveSingleAnime(anime)).toEqual(expected);
   });
-
-  it('should create an action to request anime characters', () => {
-    const expected = {
-      type: actionCreators.REQUEST_ANIME_CHARACTERS,
-      text: 'Request Anime Characters',
-    };
-    expect(actionCreators.requestCharacters()).toEqual(expected);
-  });
-
-  it('should create an action to recieve anime characters', () => {
-    const characters = charactersFetchMock;
-
-    const expected = {
-      type: actionCreators.RECIEVE_ANIME_CHARACTERS_DATA,
-      text: 'Received Anime Characters List Page',
-      payload: {
-        characters,
-      },
-    };
-    expect(actionCreators.receiveCharacters(characters)).toEqual(expected);
-  });
-
-  it('should create an action to request character failed', () => {
-    const errMsg = 'URL not found';
-
-    const expected = {
-      type: actionCreators.REQUEST_ANIME_CHARACTERS_FAILED,
-      text: 'Request Anime Characters Failed',
-      payload: new Error(errMsg),
-    };
-    expect(actionCreators.requestCharacterFailed(errMsg)).toEqual(expected);
-  });
 });
 
 describe('single anime const functions string', () => {
@@ -77,11 +44,5 @@ describe('single anime const functions string', () => {
     const animeId = 1;
     const expected = `${BASE_API_URL}anime/${animeId}?include=animeCharacters`;
     expect(actionCreators.singleAnimeUrl(animeId)).toEqual(expected);
-  });
-
-  it('should return a single chracter API url by id', () => {
-    const characterId = 1;
-    const expected = `${BASE_API_URL}anime-characters/${characterId}/character`;
-    expect(actionCreators.singleCharacterUrl(characterId)).toEqual(expected);
   });
 });

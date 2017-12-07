@@ -1,12 +1,10 @@
 import React from 'react';
-import renderer from 'react-test-renderer';
 
 import {
   Container,
   Wrapper,
   Header,
 } from '../base';
-
 
 describe('base style components', () => {
   it('Should render a Container Component', () => {

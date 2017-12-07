@@ -5,7 +5,7 @@
  * @type {array<object>}
  *
  */
-const fetchCaractersResponse = [
+const fetchCharactersResponse = [
   {
     data: {
       id: '1',
@@ -20,4 +20,4 @@ const fetchCaractersResponse = [
   },
 ];
 
-export default fetchCaractersResponse;
+export default fetchCharactersResponse;

@@ -2,7 +2,7 @@ import {
   REQUEST_ANIME_CHARACTERS,
   RECIEVE_ANIME_CHARACTERS_DATA,
   REQUEST_ANIME_CHARACTERS_FAILED,
-} from 'actions/singleAnimeCreators';
+} from 'actions/characterCreators';
 
 /**
  * App's initial state, Redux will use these values
