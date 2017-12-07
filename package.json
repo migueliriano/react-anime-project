@@ -23,7 +23,7 @@
     "start": "NODE_PATH=src react-scripts start",
     "build": "react-scripts build",
     "test": "NODE_PATH=src react-scripts test --env=jsdom",
-    "test:coverage": "npm run test -- --coverage",
+    "test:coverage": "yarn run test -- --coverage",
     "lint": "eslint $npm_package_config_lint_paths",
     "lint:cache": "eslint --cache $npm_package_config_lint_paths",
     "lint:fix": "eslint --fix $npm_package_config_lint_paths",
