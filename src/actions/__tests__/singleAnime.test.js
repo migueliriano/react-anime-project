@@ -10,7 +10,6 @@ jest.mock('../characters', () => jest.fn(() => () => false));
 
 describe('async actions Single Anime', () => {
   beforeEach(() => {
-    jest.resetModules();
     fetchMock.reset();
     fetchMock.restore();
   });
