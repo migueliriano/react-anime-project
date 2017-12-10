@@ -8,8 +8,8 @@ import {
 /**
  * Fetch all the character url and return the response of each request as json or an error
  *
- * @param {array<object>} characters - Collection of
- * @param {int=7} limit - Limit of character will be returned by default is 7
+ * @param {array<object>} characters - Collection of url character
+ * @param {int=7} limit - Limit of character will be returned by default is `7`
  *
  * @return {array<object>|string} Return an array of object of all character or an error if the
  * request fail

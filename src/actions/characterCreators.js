@@ -48,7 +48,7 @@ export const receiveCharacters = characters => (
 );
 
 /**
- * Return object to execute the action `REQUEST_SINGLE_ANIME_FAILED`
+ * Return object to execute the action `REQUEST_ANIME_CHARACTERS_FAILED`
  *
  * @param {string} errMsg - Error Message
  *
