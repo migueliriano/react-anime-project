@@ -26,6 +26,7 @@ const AnimeBoxLink = (props) => {
     <LinkBoxAnime
       to={`/anime/${id}`}
       key={id}
+      id={`link-box-${id}`}
       style={{ backgroundImage: `url(${largePosterImg}` }}
     >
       <BoxDetail>

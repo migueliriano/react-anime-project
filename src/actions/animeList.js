@@ -57,6 +57,8 @@ export const fetchAnimesListIfIsNeeded = () => async (dispatch, getState) => {
  */
 export const fetchNextPageAnimeList = () => async (dispatch, getState) => {
   const nextPageUrl = getState().animeList.nextPageUrl;
-  const respose = await fetchRequest(dispatch, nextPageUrl, requestNextpage);
-  dispatch(setNextAnimesListPage(respose.links.next));
+  if (nextPageUrl) {
+    const respose = await fetchRequest(dispatch, nextPageUrl, requestNextpage);
+    dispatch(setNextAnimesListPage(respose.links.next));
+  }
 };

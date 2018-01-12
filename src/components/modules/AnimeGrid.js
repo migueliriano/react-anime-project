@@ -2,7 +2,6 @@ import React from 'react';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import PropTypes from 'prop-types';
-import _ from 'underscore';
 
 import {
   LoadMoreContainer,
@@ -14,23 +13,16 @@ import AnimeGridList from './AnimeGridList';
 class AnimeGrid extends React.PureComponent {
   static defaultProps = {
     infiniteScroll: true,
-    loadBeforeScrollEnd: 500,
-    dataSourceLimit: 45,
+    currentViewLimitItem: 20,
   }
 
   static propTypes = {
     infiniteScroll: PropTypes.bool,
-    loadBeforeScrollEnd: PropTypes.number,
     animes: PropTypes.arrayOf(PropTypes.object).isRequired,
     isFeching: PropTypes.bool.isRequired,
     fetchAnimesListIfIsNeeded: PropTypes.func.isRequired,
     fetchNextPageAnimeList: PropTypes.func.isRequired,
-    dataSourceLimit: PropTypes.number,
-  }
-
-  constructor() {
-    super();
-    this.handleScroll = _.debounce(this.handleScroll, 20);
+    currentViewLimitItem: PropTypes.number,
   }
 
   state = {
@@ -38,25 +30,20 @@ class AnimeGrid extends React.PureComponent {
   }
 
   componentDidMount = () => {
-    const { isFeching, fetchAnimesListIfIsNeeded, animes } = this.props;
-
-    if (!isFeching) {
-      fetchAnimesListIfIsNeeded();
-    }
+    const { fetchAnimesListIfIsNeeded, fetchNextPageAnimeList } = this.props;
+    fetchAnimesListIfIsNeeded().then(() => {
+      fetchNextPageAnimeList();
+    });
 
     if (this.props.infiniteScroll) {
       window.addEventListener('scroll', this.handleScroll);
       window.addEventListener('resize', this.handleScroll);
     }
-
-    const newDataSource = this.getInitialDataSource(animes);
-    this.setState({ dataSource: newDataSource });
   }
 
   componentWillReceiveProps = ({ animes }) => {
     if (this.props.animes.length !== animes.length) {
-      const newDataSource = this.getInitialDataSource(animes);
-      this.setState({ dataSource: newDataSource });
+      this.setNewDataSource(animes);
     }
   }
 
@@ -66,23 +53,82 @@ class AnimeGrid extends React.PureComponent {
       window.removeEventListener('resize', this.handleScroll);
     }
   };
+  /**
+   * Set the current virtual view state to the `datasource` and property `virtualViewData`
+   *
+   * @param {array<object>} prevViewPortData - Preview data that the user going to see
+   * @param {array<object>} currentViewPortData - Current data that the user is seeing
+   * @param {array<object>} nextViewPortData - New data that the going to see
+   *
+   * @return {undefined}
+   */
+  setVirtualViewState = (
+    prevViewPortData = [],
+    currentViewPortData = [],
+    nextViewPortData = [],
+  ) => {
+    this.virtualViewData = {
+      prevViewPortData,
+      currentViewPortData,
+      nextViewPortData,
+    };
+
+    this.setState({
+      dataSource: [
+        ...prevViewPortData,
+        ...currentViewPortData,
+        ...nextViewPortData,
+      ],
+    });
+  }
 
   /**
-   * Slide the data using the `dataSourceLimit` from the props.
+   * Slide the data using the `currentViewLimitItem` from the props and set the new data
+   * for virtualViewData property
    *
-   * @param {array} animes - Array data that will be sliced.
-   * @return {array} Data sliced with if `animes` is mayor of dataSourceLimit`
-   * the otherwise return the variable was passed.
+   * @param {array<object>} animes - Array data that will be sliced.
+   *
+   * @return {undefined}
    */
-  getInitialDataSource = (animes) => {
-    const { dataSourceLimit } = this.props;
-    if (animes.length > dataSourceLimit) {
-      const lastIndex = animes.length;
-      const startIndex = animes.length - dataSourceLimit;
+  setNewDataSource = (animes) => {
+    let { currentViewPortData, nextViewPortData, prevViewPortData } = this.virtualViewData;
+    const { currentViewLimitItem } = this.props;
 
-      return animes.slice(startIndex, lastIndex);
+    if (animes.length <= currentViewLimitItem) {
+      currentViewPortData = animes;
     }
-    return animes;
+
+    if (animes.length > currentViewLimitItem) {
+      if (animes.length >= (currentViewLimitItem * 3)) {
+        if (!currentViewPortData.length) {
+          const dataLength = animes.length;
+          const nextViewStartIndex = dataLength - currentViewLimitItem;
+          const currentViewStartIndex = nextViewStartIndex - currentViewLimitItem;
+          const previewViewStartIndex = currentViewStartIndex - currentViewLimitItem;
+
+          nextViewPortData = animes.slice(nextViewStartIndex);
+          currentViewPortData = animes.slice(currentViewStartIndex, nextViewStartIndex);
+          prevViewPortData = animes.slice(previewViewStartIndex, currentViewStartIndex);
+        } else {
+          prevViewPortData = currentViewPortData;
+          currentViewPortData = nextViewPortData;
+
+          const lastIndexNextViewPortData = nextViewPortData[nextViewPortData.length - 1];
+
+          const startIndex = animes.findIndex(element => (
+            element.id === lastIndexNextViewPortData.id
+          ));
+          nextViewPortData = animes.slice(startIndex + 1);
+        }
+      } else {
+        const lastIndexCurrentViewData = currentViewPortData[currentViewPortData.length - 1];
+
+        const startIndex = animes.findIndex(element => element.id === lastIndexCurrentViewData.id);
+        nextViewPortData = animes.slice(startIndex + 1);
+      }
+    }
+
+    this.setVirtualViewState(prevViewPortData, currentViewPortData, nextViewPortData);
   }
 
   /**
@@ -91,74 +137,35 @@ class AnimeGrid extends React.PureComponent {
    * @return {undefined}
    */
   setPrevPageDataSource = () => {
-    const isScrollDirectionTop = window.scrollY < this.lastScrollTop;
-    const currentScrollPosition = window.scrollY - this.props.loadBeforeScrollEnd;
-
-    if (isScrollDirectionTop && currentScrollPosition <= 0) {
-      const firstDataSource = this.state.dataSource[0];
-      const { animes } = this.props;
-
-      if (firstDataSource.id === animes[0].id) {
-        return;
-      }
-
-      const dataSourceLimit = this.getDataSourceLimits(firstDataSource, animes);
-      const { lastIndex } = dataSourceLimit;
-
-      let { startIndex } = dataSourceLimit;
-
-      startIndex = startIndex < 0 ? 0 : startIndex;
-
-      const newDataSource = animes.slice(startIndex, lastIndex);
-
-      this.setState({ dataSource: newDataSource });
-    }
-
-    this.lastScrollTop = window.scrollY;
-  }
-
-  /**
-   * Function to set state the `dataSource` with the next page list.
-   *
-   * @return {undefined}
-   */
-  setNextPageDataSource = () => {
-    const { dataSource } = this.state;
+    let { prevViewPortData, currentViewPortData, nextViewPortData } = this.virtualViewData;
     const { animes } = this.props;
+    if (!prevViewPortData.length) {
+      return;
+    }
 
-    const isNotLastDatasource =
-      animes[animes.length - 1].id !== dataSource[dataSource.length - 1].id;
+    const firstPrevViewItem = prevViewPortData[0];
+    const firstPrevViewIElement = document.getElementById(`link-box-${firstPrevViewItem.id}`);
+    const isPrevViewElementScroll =
+      window.scrollY <= (firstPrevViewIElement.offsetTop + firstPrevViewIElement.offsetHeight);
 
-    const currentWindowHeight =
-      (window.innerHeight + window.scrollY) + this.props.loadBeforeScrollEnd;
+    if (isPrevViewElementScroll) {
+      nextViewPortData = currentViewPortData;
+      currentViewPortData = prevViewPortData;
 
-    if (currentWindowHeight >= document.body.offsetHeight && isNotLastDatasource) {
-      const lastDataSourceItem = this.state.dataSource[this.state.dataSource.length - 1];
+      const lastIndex = animes.findIndex(element => element.id === firstPrevViewItem.id);
+      let startIndex = lastIndex - prevViewPortData.length;
+      startIndex = startIndex > 0 ? startIndex : 0;
 
-      const { startIndex, lastIndex } = this.getDataSourceLimits(lastDataSourceItem, animes);
+      prevViewPortData = animes.slice(startIndex, lastIndex);
 
-      const newDataSource = animes.slice(startIndex, lastIndex);
-
-      this.setState({ dataSource: newDataSource });
+      this.setVirtualViewState(prevViewPortData, currentViewPortData, nextViewPortData);
     }
   }
-  /**
-   * Split the `sourceData` in a half filter by a `itemData`
-   *
-   * @param {object} itemData - An item object to get the index of the data source
-   * @param {array<object>} sourceData - Data will be filter to get the index
-   *
-   * @return {object} with the `startIndex` and `lastIndex`.
-   */
-  getDataSourceLimits = (itemData, sourceData) => {
-    const elementIndex =
-      sourceData.findIndex(element => element.id === itemData.id);
-    const dataSourceLimitMiddle = (this.props.dataSourceLimit / 2);
 
-    return {
-      startIndex: elementIndex - dataSourceLimitMiddle,
-      lastIndex: elementIndex + dataSourceLimitMiddle,
-    };
+  virtualViewData = {
+    currentViewPortData: [],
+    nextViewPortData: [],
+    prevViewPortData: [],
   }
 
   /**
@@ -166,23 +173,46 @@ class AnimeGrid extends React.PureComponent {
    *
    * @return {undefined}
    */
-  fetchNextPageAnime = () => {
-    if (this.props.isFeching) {
+  fetchOrSetNextPageAnime = () => {
+    let {
+      nextViewPortData,
+      currentViewPortData,
+      prevViewPortData,
+    } = this.virtualViewData;
+
+    const { isFeching } = this.props;
+    const scrollPointView = nextViewPortData.length ? nextViewPortData : currentViewPortData;
+
+    if (isFeching || !scrollPointView.length) {
       return;
     }
 
-    const { dataSource } = this.state;
     const { animes } = this.props;
-    const isLastDataSource = animes[animes.length - 1].id === dataSource[dataSource.length - 1].id;
-    const currentWindowHeight =
-      (window.innerHeight + window.scrollY) + this.props.loadBeforeScrollEnd;
 
-    if (currentWindowHeight >= document.body.offsetHeight && isLastDataSource) {
+    const lastNextViewItem = scrollPointView[scrollPointView.length - 1];
+    const firstNextViewItem = scrollPointView[0];
+    const firstNextViewElement = document.getElementById(`link-box-${firstNextViewItem.id}`);
+
+    const widowScrollbottom = window.scrollY + window.outerHeight;
+
+    const isScrollPastNextviewElement = (firstNextViewElement.offsetTop <= widowScrollbottom);
+
+    const isLastDataSource = animes[animes.length - 1].id === lastNextViewItem.id;
+
+    if (isLastDataSource && isScrollPastNextviewElement) {
       this.props.fetchNextPageAnimeList();
+    } else if (!isLastDataSource && isScrollPastNextviewElement) {
+      prevViewPortData = currentViewPortData;
+      currentViewPortData = nextViewPortData;
+
+      const startIndex = animes.findIndex(element => element.id === lastNextViewItem.id) + 1;
+      const lastIndex = startIndex + currentViewPortData.length;
+
+      nextViewPortData = animes.slice(startIndex, lastIndex);
+
+      this.setVirtualViewState(prevViewPortData, currentViewPortData, nextViewPortData);
     }
   }
-
-  lastScrollTop = 0;
 
   /**
    * Function to handle all the scroll events that will be trigger
@@ -190,9 +220,8 @@ class AnimeGrid extends React.PureComponent {
    * @return {undefined}
    */
   handleScroll = () => {
-    this.fetchNextPageAnime();
+    this.fetchOrSetNextPageAnime();
     this.setPrevPageDataSource();
-    this.setNextPageDataSource();
   }
 
   /**
