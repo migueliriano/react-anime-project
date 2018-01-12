@@ -16,7 +16,7 @@ export const REQUEST_NEXT_ANIMES_LIST = 'REQUEST_NEXT_ANIMES_LIST';
 export const SET_NEXT_ANIMES_LIST_PAGE_URL = 'SET_NEXT_ANIMES_LIST_PAGE_URL';
 
 /** @export const @type {string} */
-export const ANIMELIST_URL = `${BASE_API_URL}anime?page[limit]=15`;
+export const ANIMELIST_URL = `${BASE_API_URL}anime?page[limit]=20`;
 
 /**
  * Return object to execute the action `REQUEST_ANIMES_LIST`

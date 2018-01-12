@@ -1,7 +1,7 @@
 {
   "name": "react-anime-project",
   "config": {
-    "lint-paths": "./src/**/*.js ./src/**/*.test.js"
+    "lint-paths": "./src ./src/**/*.js ./src/**/*.test.js"
   },
   "version": "0.1.0",
   "author": "Miguel Angel Liriano <mglphp@gmail.com> (https://www.linkedin.com/in/miguelangeliriano)",

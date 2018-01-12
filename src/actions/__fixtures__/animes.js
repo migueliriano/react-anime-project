@@ -47,40 +47,40 @@ export const singleAnimeWithChacractersFetchResponse = {
     id: '1',
     type: 'anime',
     relationships: {
-      "animeCharacters": {
-        "links": {
-          "self": "https://kitsu.io/api/edge/anime/3/relationships/anime-characters",
-          "related": "https://kitsu.io/api/edge/anime/3/anime-characters"
+      animeCharacters: {
+        links: {
+          self: 'https://kitsu.io/api/edge/anime/3/relationships/anime-characters',
+          related: 'https://kitsu.io/api/edge/anime/3/anime-characters',
         },
-  
-        "data": [
+
+        data: [
           {
-            "type": "animeCharacters",
-            "id": "17762"
+            type: 'animeCharacters',
+            id: '17762',
           },
           {
-            "type": "animeCharacters",
-            "id": "17763"
+            type: 'animeCharacters',
+            id: '17763',
           },
           {
-            "type": "animeCharacters",
-            "id": "17764"
+            type: 'animeCharacters',
+            id: '17764',
           },
           {
-            "type": "animeCharacters",
-            "id": "17765"
+            type: 'animeCharacters',
+            id: '17765',
           },
           {
-            "type": "animeCharacters",
-            "id": "17766"
+            type: 'animeCharacters',
+            id: '17766',
           },
           {
-            "type": "animeCharacters",
-            "id": "17767"
+            type: 'animeCharacters',
+            id: '17767',
           },
-        ]
+        ],
       },
-    }
+    },
   },
 };
 
