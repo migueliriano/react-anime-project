@@ -13,6 +13,8 @@ const GridContainer = Styled.section`
   flex-wrap: wrap;
   justify-content: space-evenly;
   padding: 30px;
+  max-width: 1600px;
+  margin: 0 auto;
 `;
 
 export default GridContainer;
